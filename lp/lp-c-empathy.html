@@ -5,207 +5,588 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>禁止も放置もしっくりこない親御さんへ | 親のためのAIリテラシー講座</title>
   <meta name="description" content="AIとの付き合い方、正解がわからなくて当たり前。親子で一緒に「ちょうどいい距離」を見つけませんか。">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] },
-          colors: {
-            primary: '#059669',
-            accent: '#f59e0b',
-            warm: '#fef3c7',
-            dark: '#1e293b',
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    .gradient-bg { background: linear-gradient(135deg, #064e3b 0%, #059669 100%); }
-    .warm-bg { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
-    .cta-pulse { animation: pulse 2s infinite; }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #faf5ef;
+      --cream-dark: #f0e8de;
+      --linen: #f7f2ec;
+      --terra: #c26b49;
+      --terra-light: #e8c4b4;
+      --terra-bg: rgba(194, 107, 73, 0.06);
+      --sage: #6b8f71;
+      --sage-light: #d4e2d6;
+      --sage-bg: rgba(107, 143, 113, 0.08);
+      --ink: #3d3530;
+      --ink-soft: #6b6058;
+      --ink-faint: #a39889;
+      --rule: #ddd4c8;
+      --display: 'Klee One', cursive;
+      --body: 'Zen Maru Gothic', sans-serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* paper texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .container { max-width: 560px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── hero ── */
+    .hero {
+      padding: 56px 0 48px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--display);
+      font-size: 0.75rem;
+      color: var(--sage);
+      border: 1.5px solid var(--sage-light);
+      border-radius: 999px;
+      padding: 5px 18px;
+      margin-bottom: 28px;
+      letter-spacing: 0.08em;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+    .hero h1 .em {
+      color: var(--terra);
+      position: relative;
+    }
+    .hero h1 .em::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: -2px;
+      right: -2px;
+      height: 8px;
+      background: var(--terra-light);
+      opacity: 0.5;
+      z-index: -1;
+      border-radius: 2px;
+    }
+    .hero-body {
+      font-family: var(--display);
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 2.1;
+    }
+    .hero-body strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .hero-body .accent {
+      color: var(--terra);
+      font-weight: 600;
+    }
+
+    /* ── divider ── */
+    .divider {
+      text-align: center;
+      padding: 8px 0;
+      color: var(--rule);
+      font-size: 1.2rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* ── empathy ── */
+    .empathy {
+      padding: 48px 0;
+    }
+    .empathy-title {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .empathy-sub {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      margin-bottom: 32px;
+    }
+    .empathy-card {
+      background: var(--linen);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .empathy-card::before {
+      content: '\300C';
+      font-family: var(--display);
+      font-size: 2.5rem;
+      color: var(--terra);
+      opacity: 0.2;
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      line-height: 1;
+    }
+    .empathy-card p {
+      font-family: var(--display);
+      font-size: 0.9rem;
+      line-height: 2;
+      padding-left: 8px;
+      color: var(--ink-soft);
+    }
+    .empathy-card strong { color: var(--ink); font-weight: 600; }
+    .empathy-card .who {
+      margin-top: 10px;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      text-align: right;
+      font-family: var(--body);
+    }
+
+    /* ── message ── */
+    .message {
+      padding: 48px 0;
+      text-align: center;
+    }
+    .message-box {
+      background: var(--sage-bg);
+      border-radius: 16px;
+      padding: 40px 28px;
+    }
+    .message-box h2 {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .message-box h2 span { color: var(--sage); }
+    .message-box p {
+      font-family: var(--display);
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 2.2;
+    }
+    .message-box p strong { color: var(--ink); font-weight: 600; }
+
+    /* ── course ── */
+    .course {
+      padding: 48px 0;
+    }
+    .course-title {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .course-step {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: 36px;
+    }
+    .course-step:last-child { margin-bottom: 0; }
+    .course-step::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 28px;
+      bottom: -36px;
+      width: 1px;
+      background: var(--rule);
+    }
+    .course-step:last-child::before { display: none; }
+    .course-step .dot {
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid var(--terra);
+      background: var(--cream);
+    }
+    .course-step h3 {
+      font-family: var(--display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .course-step p {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      line-height: 1.9;
+    }
+    .course-step .meta {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      color: var(--terra);
+      font-weight: 500;
+    }
+
+    /* ── atmosphere ── */
+    .atmosphere {
+      padding: 48px 0;
+    }
+    .atmosphere-title {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .atmo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .atmo-item {
+      background: var(--linen);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .atmo-item .icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      /* using CSS shapes instead of emoji */
+    }
+    .atmo-item .icon-text {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      border-radius: 50%;
+      background: var(--terra-light);
+      color: var(--terra);
+      font-family: var(--display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .atmo-item p {
+      font-family: var(--display);
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ── voices ── */
+    .voices {
+      padding: 48px 0;
+    }
+    .voices-title {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .voice-item {
+      padding: 24px 0;
+      border-bottom: 1px dashed var(--rule);
+    }
+    .voice-item:last-of-type { border-bottom: none; }
+    .voice-item p {
+      font-family: var(--display);
+      font-size: 0.88rem;
+      line-height: 2;
+      color: var(--ink-soft);
+    }
+    .voice-item .attr {
+      margin-top: 8px;
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      text-align: right;
+    }
+    .voice-note {
+      margin-top: 12px;
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+      text-align: center;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 56px 24px;
+      text-align: center;
+    }
+    .cta-inner {
+      background: var(--terra-bg);
+      border: 1.5px solid var(--terra-light);
+      border-radius: 20px;
+      padding: 40px 24px;
+    }
+    .cta-inner h2 {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .cta-inner > p {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #06C755;
+      color: #fff;
+      font-family: var(--body);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 15px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(6, 199, 85, 0.2);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(6, 199, 85, 0.3);
+    }
+    .cta-note {
+      margin-top: 16px;
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+    }
+
+    /* ── footer ── */
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+      border-top: 1px solid var(--rule);
+    }
+    footer a { color: var(--ink-faint); }
+
+    /* ── animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 480px) {
+      .hero h1 { font-size: 2rem; }
     }
   </style>
 </head>
-<body class="font-sans text-dark bg-white">
+<body>
 
   <!-- Hero -->
-  <section class="warm-bg py-16 px-4">
-    <div class="max-w-lg mx-auto text-center">
-      <p class="text-primary font-bold text-sm tracking-wide mb-4">&#127793; 保護者のための、やさしいAI入門</p>
-      <h1 class="text-3xl md:text-4xl font-black leading-tight mb-6 text-dark">
+  <section class="hero">
+    <div class="container">
+      <span class="hero-badge reveal">保護者のための、やさしいAI入門</span>
+      <h1 class="reveal">
         禁止も放置も<br>
-        <span class="text-primary">しっくりこない</span>親御さんへ
+        <span class="em">しっくりこない</span><br>
+        親御さんへ
       </h1>
-      <p class="text-lg text-gray-600 leading-relaxed mb-8">
+      <p class="hero-body reveal">
         AIとの付き合い方に正解がわからなくて当たり前。<br>
         だって、<strong>私たち親の世代にはなかった</strong>ものだから。<br>
-        <span class="text-primary font-medium">一緒に「ちょうどいい距離」を見つけませんか。</span>
+        <span class="accent">一緒に「ちょうどいい距離」を見つけませんか。</span>
       </p>
-      <a href="#cta" class="inline-block bg-primary text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-emerald-600 transition cta-pulse">
-        無料ガイドブックを受け取る
-      </a>
     </div>
   </section>
+
+  <div class="divider">- - -</div>
 
   <!-- Empathy -->
-  <section class="py-14 px-4">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-3">みんな同じことで悩んでいます</h2>
-      <p class="text-center text-gray-500 mb-8 text-sm">ある保護者アンケートより</p>
-      <div class="space-y-4">
-        <div class="bg-gray-50 rounded-xl p-5">
-          <p class="text-gray-700 leading-relaxed">
-            &#128172; "禁止したら「友達はみんな使ってる」と言われた。でも自由にさせるのも怖い。<strong>ちょうどいいラインがわからない。</strong>"
-          </p>
-          <p class="text-gray-400 text-xs mt-2">— 小学6年生のお母さん</p>
-        </div>
-        <div class="bg-gray-50 rounded-xl p-5">
-          <p class="text-gray-700 leading-relaxed">
-            &#128172; "AI自体は悪いものじゃないと思う。でも<strong>自分が使い方を知らないのに、子供に教えられるわけがない。</strong>"
-          </p>
-          <p class="text-gray-400 text-xs mt-2">— 中学1年生のお父さん</p>
-        </div>
-        <div class="bg-gray-50 rounded-xl p-5">
-          <p class="text-gray-700 leading-relaxed">
-            &#128172; "ネットで調べても情報が多すぎて。<strong>うちの子の場合はどうすればいいの？</strong>って思ってしまう。"
-          </p>
-          <p class="text-gray-400 text-xs mt-2">— 小学3年生のお母さん</p>
-        </div>
+  <section class="empathy">
+    <div class="container">
+      <h2 class="empathy-title reveal">みんな同じことで悩んでいます</h2>
+      <p class="empathy-sub reveal">保護者アンケートより</p>
+
+      <div class="empathy-card reveal">
+        <p>禁止したら「友達はみんな使ってる」と言われた。でも自由にさせるのも怖い。<strong>ちょうどいいラインがわからない。</strong></p>
+        <p class="who">小学6年生のお母さん</p>
+      </div>
+      <div class="empathy-card reveal">
+        <p>AI自体は悪いものじゃないと思う。でも<strong>自分が使い方を知らないのに、子供に教えられるわけがない。</strong></p>
+        <p class="who">中学1年生のお父さん</p>
+      </div>
+      <div class="empathy-card reveal">
+        <p>ネットで調べても情報が多すぎて。<strong>うちの子の場合はどうすればいいの？</strong>って思ってしまう。</p>
+        <p class="who">小学3年生のお母さん</p>
       </div>
     </div>
   </section>
+
+  <div class="divider">- - -</div>
 
   <!-- Message -->
-  <section class="py-14 px-4 bg-emerald-50">
-    <div class="max-w-lg mx-auto text-center">
-      <h2 class="text-2xl font-bold mb-6">
-        完璧な答えじゃなくていい。<br>
-        <span class="text-primary">「うちなりのルール」</span>があればいい。
-      </h2>
-      <p class="text-gray-600 leading-relaxed">
-        スマホを持たせるとき、ルールを決めましたよね。<br>
-        ゲームの時間も、家庭ごとに違いますよね。<br><br>
-        AIも同じ。<strong>「うちはこうする」</strong>を<br>
-        親子で話し合って決められたら、それで十分です。<br><br>
-        この講座は、そのための<strong>きっかけと道具</strong>を<br>
-        お渡しする場所です。
-      </p>
-    </div>
-  </section>
-
-  <!-- Content -->
-  <section class="py-14 px-4">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-10">3回の講座でやること</h2>
-      <div class="space-y-8">
-        <div class="relative pl-8 border-l-2 border-primary">
-          <div class="absolute -left-3 top-0 bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</div>
-          <h3 class="font-bold text-lg mb-2">まず、触ってみる</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            AIって何？を体で理解する回。ChatGPTに質問したり、AIに絵を描かせたり。
-            「へぇ〜こんなことできるんだ」「でもこれは苦手なんだ」を実感してもらいます。
-          </p>
-          <p class="text-primary text-xs mt-2 font-medium">所要時間: 約90分 / お子さん不要</p>
-        </div>
-        <div class="relative pl-8 border-l-2 border-primary">
-          <div class="absolute -left-3 top-0 bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</div>
-          <h3 class="font-bold text-lg mb-2">「うちのルール」を作る</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            「宿題にAIを使っていい？」「何歳から？」「1日何分？」——
-            よくあるケースを一緒に考えながら、ワークシートに書き出していきます。
-            正解はないけど、<strong>考え方のフレームワーク</strong>が手に入ります。
-          </p>
-          <p class="text-primary text-xs mt-2 font-medium">所要時間: 約90分 / お子さん不要</p>
-        </div>
-        <div class="relative pl-8 border-l-2 border-primary">
-          <div class="absolute -left-3 top-0 bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</div>
-          <h3 class="font-bold text-lg mb-2">親子で一緒にやってみる</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            お子さんと一緒に参加する回。AIを使ってオリジナルキャラクターやお話を作ります。
-            「ルールの中で楽しく使う」を親子で体験する時間です。
-          </p>
-          <p class="text-primary text-xs mt-2 font-medium">所要時間: 約90分 / 親子で参加</p>
-        </div>
+  <section class="message">
+    <div class="container">
+      <div class="message-box reveal">
+        <h2>
+          完璧な答えじゃなくていい。<br>
+          <span>「うちなりのルール」</span>があればいい。
+        </h2>
+        <p>
+          スマホを持たせるとき、ルールを決めましたよね。<br>
+          ゲームの時間も、家庭ごとに違いますよね。<br><br>
+          AIも同じ。<strong>「うちはこうする」</strong>を<br>
+          親子で話し合って決められたら、それで十分。<br><br>
+          この講座は、そのための<strong>きっかけと道具</strong>を<br>
+          お渡しする場所です。
+        </p>
       </div>
     </div>
   </section>
+
+  <div class="divider">- - -</div>
+
+  <!-- Course -->
+  <section class="course">
+    <div class="container">
+      <h2 class="course-title reveal">3回の講座でやること</h2>
+
+      <div class="course-step reveal">
+        <div class="dot"></div>
+        <h3>まず、触ってみる</h3>
+        <p>
+          AIって何？を体で理解する回。ChatGPTに質問したり、AIに絵を描かせたり。
+          「へぇ〜こんなことできるんだ」「でもこれは苦手なんだ」を実感してもらいます。
+        </p>
+        <p class="meta">約90分 / お子さん不要</p>
+      </div>
+      <div class="course-step reveal">
+        <div class="dot"></div>
+        <h3>「うちのルール」を作る</h3>
+        <p>
+          「宿題にAIを使っていい？」「何歳から？」「1日何分？」——
+          よくあるケースを一緒に考えながら、ワークシートに書き出していきます。
+        </p>
+        <p class="meta">約90分 / お子さん不要</p>
+      </div>
+      <div class="course-step reveal">
+        <div class="dot"></div>
+        <h3>親子で一緒にやってみる</h3>
+        <p>
+          お子さんと一緒に参加する回。AIを使ってオリジナルキャラクターやお話を作ります。
+          「ルールの中で楽しく使う」を親子で体験する時間。
+        </p>
+        <p class="meta">約90分 / 親子で参加</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">- - -</div>
 
   <!-- Atmosphere -->
-  <section class="py-14 px-4 bg-gray-50">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">こんな雰囲気の講座です</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="bg-white rounded-xl p-5 text-center">
-          <div class="text-3xl mb-2">&#9749;</div>
-          <p class="text-sm font-medium">カフェみたいにリラックス</p>
+  <section class="atmosphere">
+    <div class="container">
+      <h2 class="atmosphere-title reveal">こんな雰囲気です</h2>
+      <div class="atmo-grid">
+        <div class="atmo-item reveal">
+          <div class="icon-text">珈</div>
+          <p>カフェみたいに<br>リラックス</p>
         </div>
-        <div class="bg-white rounded-xl p-5 text-center">
-          <div class="text-3xl mb-2">&#128587;</div>
-          <p class="text-sm font-medium">最大8名の少人数</p>
+        <div class="atmo-item reveal">
+          <div class="icon-text">少</div>
+          <p>最大8名の<br>少人数制</p>
         </div>
-        <div class="bg-white rounded-xl p-5 text-center">
-          <div class="text-3xl mb-2">&#128172;</div>
-          <p class="text-sm font-medium">「初歩的な質問」大歓迎</p>
+        <div class="atmo-item reveal">
+          <div class="icon-text">問</div>
+          <p>「初歩的な質問」<br>大歓迎</p>
         </div>
-        <div class="bg-white rounded-xl p-5 text-center">
-          <div class="text-3xl mb-2">&#128241;</div>
-          <p class="text-sm font-medium">スマホだけでOK</p>
+        <div class="atmo-item reveal">
+          <div class="icon-text">楽</div>
+          <p>スマホだけで<br>参加OK</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Voice -->
-  <section class="py-14 px-4">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">参加された方の声</h2>
-      <div class="space-y-4">
-        <div class="bg-white border rounded-xl p-5">
-          <p class="text-gray-700 text-sm leading-relaxed mb-3">"「正解がない」と言ってもらえたのが、一番ラクになりました。完璧じゃなくていいんだ、って。"</p>
-          <p class="text-gray-400 text-xs">— 小学3年生のお母さん（30代）</p>
-        </div>
-        <div class="bg-white border rounded-xl p-5">
-          <p class="text-gray-700 text-sm leading-relaxed mb-3">"同じ悩みを持つ親同士で話せたのがよかった。うちだけじゃないんだなって安心しました。"</p>
-          <p class="text-gray-400 text-xs">— 小学5年生・中学1年生のお母さん（40代）</p>
-        </div>
-        <div class="bg-white border rounded-xl p-5">
-          <p class="text-gray-700 text-sm leading-relaxed mb-3">"3回目に娘と参加して、帰り道に『またやりたい！』って。あの笑顔が見られただけで参加した甲斐がありました。"</p>
-          <p class="text-gray-400 text-xs">— 小学4年生のお父さん（40代）</p>
-        </div>
+  <div class="divider">- - -</div>
+
+  <!-- Voices -->
+  <section class="voices">
+    <div class="container">
+      <h2 class="voices-title reveal">参加された方の声</h2>
+      <div class="voice-item reveal">
+        <p>「正解がない」と言ってもらえたのが、一番ラクになりました。完璧じゃなくていいんだ、って。</p>
+        <p class="attr">小学3年生の母（30代）</p>
       </div>
-      <p class="text-center text-gray-400 text-xs mt-4">※ 体験モニターの方の感想です</p>
+      <div class="voice-item reveal">
+        <p>同じ悩みを持つ親同士で話せたのがよかった。うちだけじゃないんだなって安心しました。</p>
+        <p class="attr">小学5年生・中学1年生の母（40代）</p>
+      </div>
+      <div class="voice-item reveal">
+        <p>3回目に娘と参加して、帰り道に「またやりたい！」って。あの笑顔が見られただけで参加した甲斐がありました。</p>
+        <p class="attr">小学4年生の父（40代）</p>
+      </div>
+      <p class="voice-note">※ 体験モニターの方の感想です</p>
     </div>
   </section>
 
   <!-- CTA -->
-  <section id="cta" class="gradient-bg py-16 px-4">
-    <div class="max-w-lg mx-auto text-center text-white">
-      <h2 class="text-2xl font-bold mb-4">まずは、読むだけでOK</h2>
-      <p class="text-emerald-100 mb-8 leading-relaxed">
-        「親子のAIルール かんたんガイドブック」<br>
-        LINEでお送りします。気軽にどうぞ。
-      </p>
-      <a href="#" class="inline-block bg-[#06C755] text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-green-500 transition cta-pulse">
-        LINEで無料ガイドを受け取る
-      </a>
-      <p class="text-emerald-200 text-xs mt-4">※ 読むだけでも大丈夫。無理な勧誘はしません。</p>
+  <section id="cta" class="cta-section">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <h2>まずは、読むだけでOK</h2>
+        <p>「親子のAIルール かんたんガイドブック」<br>LINEでお送りします。気軽にどうぞ。</p>
+        <a href="#" class="cta-btn">LINEで無料ガイドを受け取る</a>
+        <p class="cta-note">読むだけでも大丈夫。無理な勧誘はしません。</p>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-8 px-4 text-center text-gray-400 text-xs">
-    <p>&copy; 2026 親のためのAIリテラシー講座</p>
-    <p class="mt-1">
-      <a href="#" class="underline">プライバシーポリシー</a> ・
-      <a href="#" class="underline">特定商取引法に基づく表記</a>
-    </p>
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 親のためのAIリテラシー講座</p>
+      <p style="margin-top: 4px;">
+        <a href="#">プライバシーポリシー</a>&ensp;/&ensp;<a href="#">特定商取引法に基づく表記</a>
+      </p>
+    </div>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>

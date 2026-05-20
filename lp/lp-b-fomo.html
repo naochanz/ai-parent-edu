@@ -5,128 +5,569 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI時代、"知らない親"が子供の可能性を狭めている | 親のためのAIリテラシー講座</title>
   <meta name="description" content="2026年、子供たちはもうAIを使っています。取り残されているのは、実は親の方かもしれません。">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] },
-          colors: {
-            primary: '#7c3aed',
-            accent: '#f59e0b',
-            dark: '#1e293b',
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@300;400;500;700;800;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    .gradient-bg { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); }
-    .cta-pulse { animation: pulse 2s infinite; }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0e0f11;
+      --surface: #16181c;
+      --surface-2: #1e2028;
+      --border: #2a2d36;
+      --text: #e4e2de;
+      --text-dim: #8a8680;
+      --cyan: #22d3ee;
+      --cyan-dim: rgba(34, 211, 238, 0.1);
+      --amber: #f5a623;
+      --amber-dim: rgba(245, 166, 35, 0.08);
+      --red-soft: #f87171;
+      --green-soft: #4ade80;
+      --display: 'M PLUS 1', sans-serif;
+      --mono: 'IBM Plex Mono', monospace;
     }
-    .stat-card { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--display);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* grid bg */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+    /* ── header ── */
+    .site-header {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--cyan);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      padding: 3px 10px;
+      letter-spacing: 0.08em;
+    }
+    .header-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── hero ── */
+    .hero {
+      padding: 64px 0 56px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--amber);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--amber);
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .hero h1 .highlight {
+      color: var(--cyan);
+      position: relative;
+    }
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--cyan);
+      opacity: 0.4;
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+      max-width: 440px;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+
+    /* ── stat grid ── */
+    .stats {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .stats-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--cyan);
+      opacity: 0.6;
+    }
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--cyan);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-card:nth-child(3) .stat-num,
+    .stat-card:nth-child(3)::before {
+      color: var(--red-soft);
+      background: var(--red-soft);
+    }
+    .stat-desc {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .stat-source {
+      margin-top: 16px;
+      font-size: 0.65rem;
+      color: #4a4740;
+      text-align: right;
+    }
+
+    /* ── problems ── */
+    .problems {
+      padding: 56px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--amber);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+    .problem-list { display: flex; flex-direction: column; gap: 16px; }
+    .problem-item {
+      background: var(--surface);
+      border-left: 2px solid var(--red-soft);
+      padding: 20px;
+    }
+    .problem-item h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .problem-item p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* ── solution ── */
+    .solution {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .solution .section-title span { color: var(--cyan); }
+
+    .step-list { display: flex; flex-direction: column; gap: 20px; }
+    .step-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .step-item:hover { border-color: var(--cyan); }
+    .step-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--cyan);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.05em;
+    }
+    .step-item h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .step-item p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* ── comparison ── */
+    .comparison {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .compare-col {
+      padding: 24px 16px;
+      border: 1px solid var(--border);
+    }
+    .compare-col.negative { background: rgba(248, 113, 113, 0.04); border-color: rgba(248, 113, 113, 0.2); }
+    .compare-col.positive { background: var(--cyan-dim); border-color: rgba(34, 211, 238, 0.2); }
+    .compare-col h3 {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-col.negative h3 { color: var(--red-soft); }
+    .compare-col.positive h3 { color: var(--cyan); }
+    .compare-col li {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 10px;
+      padding-left: 14px;
+      position: relative;
+      list-style: none;
+    }
+    .compare-col.negative li::before {
+      content: '\2013';
+      position: absolute;
+      left: 0;
+      color: var(--red-soft);
+    }
+    .compare-col.positive li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    /* ── features ── */
+    .features {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .feat-list { display: flex; flex-direction: column; gap: 24px; }
+    .feat-item {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .feat-icon {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--amber);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .feat-item h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 4px; }
+    .feat-item p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.7; }
+
+    /* ── voices ── */
+    .voices {
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .voice-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 12px;
+    }
+    .voice-card p {
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .voice-card .attr {
+      margin-top: 12px;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-align: right;
+    }
+    .voice-note {
+      margin-top: 12px;
+      font-size: 0.65rem;
+      color: #4a4740;
+      text-align: right;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 64px 20px;
+      text-align: center;
+      background: var(--surface);
+      border-top: 2px solid var(--cyan);
+      position: relative;
+      z-index: 1;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 120px;
+      background: radial-gradient(ellipse, rgba(34, 211, 238, 0.08), transparent);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .cta-section > p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #06C755;
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 48px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(6, 199, 85, 0.25);
+    }
+    .cta-note {
+      margin-top: 16px;
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      position: relative;
+    }
+
+    /* ── footer ── */
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      font-size: 0.68rem;
+      color: #4a4740;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    footer a { color: #4a4740; }
+
+    /* ── animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (min-width: 480px) {
+      .hero h1 { font-size: 2.3rem; }
+    }
   </style>
 </head>
-<body class="font-sans text-dark bg-white">
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <span class="header-tag">PARENT // AI LITERACY</span>
+        <span class="header-label">保護者向け 全3回</span>
+      </div>
+    </div>
+  </header>
 
   <!-- Hero -->
-  <section class="gradient-bg text-white py-16 px-4">
-    <div class="max-w-lg mx-auto text-center">
-      <p class="text-purple-200 font-bold text-sm tracking-wide mb-4">&#128640; 保護者向け・全3回の体験講座</p>
-      <h1 class="text-3xl md:text-4xl font-black leading-tight mb-6">
+  <section class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">2026 REPORT</p>
+      <h1 class="reveal">
         子供はもうAIを使っている。<br>
-        <span class="text-accent">知らないのは、親だけ</span>かもしれません。
+        <span class="highlight">知らないのは、親だけ</span><br>
+        かもしれません。
       </h1>
-      <p class="text-lg text-purple-100 leading-relaxed mb-8">
+      <p class="hero-sub reveal">
         プログラミング教室の次に来るのは、AI教室。<br>
-        でもその前に——<br>
-        <strong class="text-white">親が先にわかっておきませんか？</strong>
+        でもその前に——<strong>親が先にわかっておきませんか？</strong>
       </p>
-      <a href="#cta" class="inline-block bg-accent text-dark font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-yellow-400 transition cta-pulse">
-        無料ガイドブックを受け取る
-      </a>
     </div>
   </section>
 
   <!-- Stats -->
-  <section class="py-14 px-4">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">数字で見る「子供とAI」の今</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="stat-card rounded-2xl p-5 text-center">
-          <p class="text-4xl font-black text-primary">76%</p>
-          <p class="text-sm text-gray-600 mt-2">の中高生がAIツールを使った経験あり</p>
+  <section class="stats">
+    <div class="container">
+      <p class="stats-label reveal">// DATA POINTS</p>
+      <div class="stat-grid">
+        <div class="stat-card reveal">
+          <p class="stat-num">76%</p>
+          <p class="stat-desc">の中高生がAIツールを使った経験あり</p>
         </div>
-        <div class="stat-card rounded-2xl p-5 text-center">
-          <p class="text-4xl font-black text-primary">40%</p>
-          <p class="text-sm text-gray-600 mt-2">の小学生がAIに触れた経験あり</p>
+        <div class="stat-card reveal">
+          <p class="stat-num">40%</p>
+          <p class="stat-desc">の小学生がAIに触れた経験あり</p>
         </div>
-        <div class="stat-card rounded-2xl p-5 text-center">
-          <p class="text-4xl font-black text-primary">12%</p>
-          <p class="text-sm text-gray-600 mt-2">の保護者がAIを「十分理解している」と回答</p>
+        <div class="stat-card reveal">
+          <p class="stat-num">12%</p>
+          <p class="stat-desc">の保護者がAIを「十分理解」と回答</p>
         </div>
-        <div class="stat-card rounded-2xl p-5 text-center">
-          <p class="text-4xl font-black text-primary">89%</p>
-          <p class="text-sm text-gray-600 mt-2">の親が「学校でAI教育をすべき」と考えている</p>
+        <div class="stat-card reveal">
+          <p class="stat-num">89%</p>
+          <p class="stat-desc">の親が「学校でAI教育をすべき」と回答</p>
         </div>
       </div>
-      <p class="text-center text-gray-400 text-xs mt-4">※ 各種調査をもとに構成（詳細はお問い合わせください）</p>
+      <p class="stat-source">※ 各種調査をもとに構成</p>
     </div>
   </section>
 
-  <!-- Gap -->
-  <section class="py-14 px-4 bg-gray-50">
-    <div class="max-w-lg mx-auto text-center">
-      <h2 class="text-2xl font-bold mb-6">「学校に任せておけばいい」が<br>通用しない理由</h2>
-      <div class="space-y-4 text-left">
-        <div class="bg-white rounded-xl p-5 shadow-sm">
-          <h3 class="font-bold text-primary mb-2">&#10060; 学校のIT教育は追いついていない</h3>
-          <p class="text-gray-600 text-sm">学習指導要領にAI活用の指針が入るのはまだ先。現場の先生も手探りの状態です。</p>
+  <!-- Problems -->
+  <section class="problems">
+    <div class="container">
+      <p class="section-label reveal">// WHY IT MATTERS</p>
+      <h2 class="section-title reveal">「学校に任せておけばいい」が<br>通用しない理由</h2>
+      <div class="problem-list">
+        <div class="problem-item reveal">
+          <h3>学校のIT教育は追いついていない</h3>
+          <p>学習指導要領にAI活用の指針が入るのはまだ先。現場の先生も手探りの状態です。</p>
         </div>
-        <div class="bg-white rounded-xl p-5 shadow-sm">
-          <h3 class="font-bold text-primary mb-2">&#10060; 子供は「使い方」を自己流で覚える</h3>
-          <p class="text-gray-600 text-sm">YouTubeやTikTokで断片的な情報を得て、正しい使い方もリスクもわからないまま使い始めます。</p>
+        <div class="problem-item reveal">
+          <h3>子供は「使い方」を自己流で覚える</h3>
+          <p>YouTubeやTikTokで断片的な情報を得て、正しい使い方もリスクもわからないまま使い始めます。</p>
         </div>
-        <div class="bg-white rounded-xl p-5 shadow-sm">
-          <h3 class="font-bold text-primary mb-2">&#10060; 「AIが使える子」と「使えない子」の差が開いている</h3>
-          <p class="text-gray-600 text-sm">調べ学習、作文、プレゼン——AIを適切に使える子は、学びのスピードが違います。</p>
+        <div class="problem-item reveal">
+          <h3>「使える子」と「使えない子」の差が開いている</h3>
+          <p>調べ学習、作文、プレゼン——AIを適切に使える子は、学びのスピードが違います。</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Solution -->
-  <section class="py-14 px-4">
-    <div class="max-w-lg mx-auto text-center">
-      <h2 class="text-2xl font-bold mb-4">だから、<span class="text-primary">親が先に知る</span></h2>
-      <p class="text-gray-600 mb-10 leading-relaxed">
-        子供にどうAIと向き合わせるか。<br>
-        その判断ができるのは、<strong>親だけ</strong>です。
-      </p>
-      <div class="space-y-6">
-        <div class="flex items-start gap-4 text-left bg-purple-50 rounded-2xl p-5">
-          <span class="bg-primary text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shrink-0">1</span>
+  <section class="solution">
+    <div class="container">
+      <p class="section-label reveal">// SOLUTION</p>
+      <h2 class="section-title reveal">だから、<span>親が先に知る</span></h2>
+      <div class="step-list">
+        <div class="step-item reveal">
+          <span class="step-tag">S.01</span>
           <div>
-            <h3 class="font-bold text-lg">まず親が体験する</h3>
-            <p class="text-gray-600 text-sm mt-1">ChatGPT・画像生成AIを実際に触って、可能性とリスクを両方知る。</p>
+            <h3>まず親が体験する</h3>
+            <p>ChatGPT・画像生成AIを実際に触って、可能性とリスクを両方知る。</p>
           </div>
         </div>
-        <div class="flex items-start gap-4 text-left bg-purple-50 rounded-2xl p-5">
-          <span class="bg-primary text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shrink-0">2</span>
+        <div class="step-item reveal">
+          <span class="step-tag">S.02</span>
           <div>
-            <h3 class="font-bold text-lg">判断基準を持つ</h3>
-            <p class="text-gray-600 text-sm mt-1">「宿題にAIはアリ？」「何歳から使わせる？」——ケース別の考え方を学ぶ。</p>
+            <h3>判断基準を持つ</h3>
+            <p>「宿題にAIはアリ？」「何歳から使わせる？」——ケース別の考え方を学ぶ。</p>
           </div>
         </div>
-        <div class="flex items-start gap-4 text-left bg-purple-50 rounded-2xl p-5">
-          <span class="bg-primary text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shrink-0">3</span>
+        <div class="step-item reveal">
+          <span class="step-tag">S.03</span>
           <div>
-            <h3 class="font-bold text-lg">親子で一緒に使う</h3>
-            <p class="text-gray-600 text-sm mt-1">家庭のAIルールを作り、親子で楽しく実践。「正しく使える力」を育てる。</p>
+            <h3>親子で一緒に使う</h3>
+            <p>家庭のAIルールを作り、親子で楽しく実践。「正しく使える力」を育てる。</p>
           </div>
         </div>
       </div>
@@ -134,103 +575,111 @@
   </section>
 
   <!-- Comparison -->
-  <section class="py-14 px-4 bg-gray-50">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">3年後、差がつきます</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="bg-red-50 border border-red-200 rounded-xl p-5">
-          <h3 class="font-bold text-red-600 text-sm mb-3">&#9888;&#65039; AIを放置した場合</h3>
-          <ul class="text-sm text-gray-600 space-y-2">
-            <li>&#8226; 子供が誤情報を鵜呑みに</li>
-            <li>&#8226; 考える力が育たない</li>
-            <li>&#8226; リスクに気づけない</li>
-            <li>&#8226; 親子の会話のネタにならない</li>
+  <section class="comparison">
+    <div class="container">
+      <p class="section-label reveal">// 3 YEARS LATER</p>
+      <h2 class="section-title reveal">3年後、差がつきます</h2>
+      <div class="compare-grid reveal">
+        <div class="compare-col negative">
+          <h3>RISK: 放置した場合</h3>
+          <ul>
+            <li>子供が誤情報を鵜呑みに</li>
+            <li>考える力が育たない</li>
+            <li>リスクに気づけない</li>
+            <li>親子の会話のネタにならない</li>
           </ul>
         </div>
-        <div class="bg-green-50 border border-green-200 rounded-xl p-5">
-          <h3 class="font-bold text-green-600 text-sm mb-3">&#9989; 一緒に学んだ場合</h3>
-          <ul class="text-sm text-gray-600 space-y-2">
-            <li>&#8226; 情報の真偽を判断できる</li>
-            <li>&#8226; AIを「道具」として使える</li>
-            <li>&#8226; 自分で考える習慣がつく</li>
-            <li>&#8226; 親子の新しい共通体験に</li>
+        <div class="compare-col positive">
+          <h3>GAIN: 一緒に学んだ場合</h3>
+          <ul>
+            <li>情報の真偽を判断できる</li>
+            <li>AIを「道具」として使える</li>
+            <li>自分で考える習慣がつく</li>
+            <li>親子の新しい共通体験に</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust -->
-  <section class="py-14 px-4">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">講座の特長</h2>
-      <div class="space-y-5">
-        <div class="flex gap-4 items-start">
-          <span class="text-primary font-black text-xl shrink-0">01</span>
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <p class="section-label reveal">// FEATURES</p>
+      <h2 class="section-title reveal">講座の特長</h2>
+      <div class="feat-list">
+        <div class="feat-item reveal">
+          <div class="feat-icon">01</div>
           <div>
-            <h3 class="font-bold">IT知識ゼロでOK</h3>
-            <p class="text-gray-500 text-sm mt-1">「パソコンは苦手…」という方にこそ来てほしい講座です。スマホがあれば参加できます。</p>
+            <h3>IT知識ゼロでOK</h3>
+            <p>「パソコンは苦手…」という方にこそ。スマホがあれば参加できます。</p>
           </div>
         </div>
-        <div class="flex gap-4 items-start">
-          <span class="text-primary font-black text-xl shrink-0">02</span>
+        <div class="feat-item reveal">
+          <div class="feat-icon">02</div>
           <div>
-            <h3 class="font-bold">体験中心。座学だけでは終わらない</h3>
-            <p class="text-gray-500 text-sm mt-1">講義は最小限。実際にAIを使って、驚いて、考える。手を動かす講座です。</p>
+            <h3>体験中心。座学だけでは終わらない</h3>
+            <p>講義は最小限。実際にAIを使って、驚いて、考える。手を動かす講座です。</p>
           </div>
         </div>
-        <div class="flex gap-4 items-start">
-          <span class="text-primary font-black text-xl shrink-0">03</span>
+        <div class="feat-item reveal">
+          <div class="feat-icon">03</div>
           <div>
-            <h3 class="font-bold">持ち帰れる「家庭のAIルール」付き</h3>
-            <p class="text-gray-500 text-sm mt-1">講座内で作った「うちのAIルール」シートはそのままご家庭で使えます。</p>
+            <h3>持ち帰れる「家庭のAIルール」付き</h3>
+            <p>講座内で作った「うちのAIルール」シートはそのままご家庭で使えます。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Voice -->
-  <section class="py-14 px-4 bg-gray-50">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">参加された方の声</h2>
-      <div class="space-y-4">
-        <div class="bg-white border rounded-xl p-5">
-          <p class="text-gray-700 text-sm leading-relaxed mb-3">"周りのママ友は誰もAIのこと知らなくて、でも子供たちは使ってて。この講座で一歩先に出られた気がします。"</p>
-          <p class="text-gray-400 text-xs">— 小学4年生のお母さん（30代）</p>
-        </div>
-        <div class="bg-white border rounded-xl p-5">
-          <p class="text-gray-700 text-sm leading-relaxed mb-3">"息子が『パパ、すごいじゃん！』と言ってくれた。親子で同じ話題で盛り上がれるのが嬉しい。"</p>
-          <p class="text-gray-400 text-xs">— 中学2年生のお父さん（40代）</p>
-        </div>
+  <!-- Voices -->
+  <section class="voices">
+    <div class="container">
+      <p class="section-label reveal">// VOICES</p>
+      <h2 class="section-title reveal">参加された方の声</h2>
+      <div class="voice-card reveal">
+        <p>周りのママ友は誰もAIのこと知らなくて、でも子供たちは使ってて。この講座で一歩先に出られた気がします。</p>
+        <p class="attr">— 小学4年生の母（30代）</p>
       </div>
-      <p class="text-center text-gray-400 text-xs mt-4">※ 体験モニターの方の感想です</p>
+      <div class="voice-card reveal">
+        <p>息子が「パパ、すごいじゃん！」と言ってくれた。親子で同じ話題で盛り上がれるのが嬉しい。</p>
+        <p class="attr">— 中学2年生の父（40代）</p>
+      </div>
+      <p class="voice-note">※ 体験モニターの方の感想です</p>
     </div>
   </section>
 
   <!-- CTA -->
-  <section id="cta" class="gradient-bg py-16 px-4">
-    <div class="max-w-lg mx-auto text-center text-white">
-      <h2 class="text-2xl font-bold mb-4">まずは無料ガイドブックから</h2>
-      <p class="text-purple-100 mb-8 leading-relaxed">
-        「AI時代の子育て 親が先に知るべき5つのポイント」<br>
-        LINEで今すぐお届けします。
-      </p>
-      <a href="#" class="inline-block bg-[#06C755] text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-green-500 transition cta-pulse">
-        LINEで無料ガイドを受け取る
-      </a>
-      <p class="text-purple-200 text-xs mt-4">※ 無理な勧誘は一切ありません</p>
-    </div>
+  <section id="cta" class="cta-section">
+    <h2>まずは無料ガイドブックから</h2>
+    <p>「AI時代の子育て&emsp;親が先に知るべき5つのポイント」<br>LINEで今すぐお届けします。</p>
+    <a href="#" class="cta-btn">LINEで無料ガイドを受け取る</a>
+    <p class="cta-note">※ 無理な勧誘は一切ありません</p>
   </section>
 
   <!-- Footer -->
-  <footer class="py-8 px-4 text-center text-gray-400 text-xs">
-    <p>&copy; 2026 親のためのAIリテラシー講座</p>
-    <p class="mt-1">
-      <a href="#" class="underline">プライバシーポリシー</a> ・
-      <a href="#" class="underline">特定商取引法に基づく表記</a>
-    </p>
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 親のためのAIリテラシー講座</p>
+      <p style="margin-top: 4px;">
+        <a href="#">プライバシーポリシー</a>&ensp;/&ensp;<a href="#">特定商取引法に基づく表記</a>
+      </p>
+    </div>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>

@@ -5,176 +5,511 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お子さんのAI利用、このままで大丈夫？ | 親のためのAIリテラシー講座</title>
   <meta name="description" content="子供がAIを使い始めた今、親が知っておくべきこと。地域密着型の体験講座で、家庭のAIルールを一緒に作りましょう。">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] },
-          colors: {
-            primary: '#2563eb',
-            accent: '#f59e0b',
-            dark: '#1e293b',
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    .gradient-bg { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); }
-    .cta-pulse { animation: pulse 2s infinite; }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a1a;
+      --paper: #f6f1eb;
+      --paper-dark: #ebe3d9;
+      --red: #c23b22;
+      --red-light: #e8d5d0;
+      --gray: #6b6560;
+      --gray-light: #9e9790;
+      --rule: #d4ccc4;
+      --serif: 'Shippori Mincho', serif;
+      --sans: 'Zen Kaku Gothic New', sans-serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .container { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── masthead ── */
+    .masthead {
+      border-bottom: 3px double var(--ink);
+      padding: 20px 0 16px;
+      text-align: center;
+    }
+    .masthead-date {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+    .masthead-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.3em;
+      margin-top: 4px;
+    }
+    .masthead-sub {
+      font-size: 0.65rem;
+      color: var(--gray-light);
+      margin-top: 4px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── headline ── */
+    .headline-section {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .headline-kicker {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      display: inline-block;
+      border: 1.5px solid var(--red);
+      padding: 3px 10px;
+    }
+    .headline-main {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+    .headline-main em {
+      font-style: normal;
+      color: var(--red);
+      background: linear-gradient(transparent 60%, var(--red-light) 60%);
+    }
+    .headline-lead {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #3a3530;
+    }
+    .headline-lead strong {
+      font-weight: 600;
+      border-bottom: 1.5px solid var(--ink);
+    }
+
+    /* ── section ── */
+    .section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-head {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 32px;
+      position: relative;
+      padding-left: 16px;
+    }
+    .section-head::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--red);
+    }
+
+    /* ── anxiety cards ── */
+    .anxiety-list { display: flex; flex-direction: column; gap: 16px; }
+    .anxiety-item {
+      padding: 20px 20px 20px 24px;
+      background: var(--paper-dark);
+      border-left: 2px solid var(--red);
+      position: relative;
+    }
+    .anxiety-item::before {
+      content: '\201C';
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--red);
+      opacity: 0.25;
+      position: absolute;
+      top: -4px;
+      left: 8px;
+      line-height: 1;
+    }
+    .anxiety-item p {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      line-height: 1.9;
+      padding-left: 20px;
+    }
+    .anxiety-item strong { font-weight: 700; }
+    .anxiety-note {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: var(--gray-light);
+      text-align: right;
+    }
+
+    /* ── answer banner ── */
+    .answer-banner {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .answer-banner h2 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+    }
+    .answer-banner h2 span {
+      color: var(--red);
+      display: inline;
+    }
+    .answer-banner p {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: #b8b0a6;
+      line-height: 1.9;
+    }
+    .answer-banner p strong {
+      color: var(--paper);
+      font-weight: 500;
+    }
+
+    /* ── course steps ── */
+    .step { display: flex; gap: 20px; margin-bottom: 36px; }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 48px;
+      opacity: 0.7;
+    }
+    .step-body h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .step-body p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    /* ── reasons ── */
+    .reason-grid {
+      display: grid;
+      gap: 24px;
+    }
+    .reason-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .reason-num {
+      font-family: var(--serif);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--paper);
+      background: var(--ink);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .reason-item h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .reason-item p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── voices ── */
+    .voice-item {
+      padding: 24px 0;
+      border-bottom: 1px dashed var(--rule);
+    }
+    .voice-item:last-child { border-bottom: none; }
+    .voice-text {
+      font-family: var(--serif);
+      font-size: 0.92rem;
+      line-height: 2;
+      font-style: italic;
+    }
+    .voice-attr {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      color: var(--gray-light);
+      text-align: right;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 56px 24px;
+      background: var(--ink);
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--paper);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .cta-section p {
+      font-size: 0.85rem;
+      color: #9e9790;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #06C755;
+      color: #fff;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 40px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(6, 199, 85, 0.3);
+    }
+    .cta-note {
+      margin-top: 16px;
+      font-size: 0.7rem;
+      color: #6b6560;
+    }
+
+    /* ── footer ── */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--gray-light);
+      border-top: 1px solid var(--rule);
+    }
+    footer a { color: var(--gray-light); }
+
+    /* ── scroll animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 480px) {
+      .headline-main { font-size: 2.4rem; }
+      .section-head { font-size: 1.6rem; }
     }
   </style>
 </head>
-<body class="font-sans text-dark bg-white">
+<body>
 
-  <!-- Hero -->
-  <section class="gradient-bg text-white py-16 px-4">
-    <div class="max-w-lg mx-auto text-center">
-      <p class="text-accent font-bold text-sm tracking-wide mb-4">&#9888;&#65039; 保護者向け・地域限定講座</p>
-      <h1 class="text-3xl md:text-4xl font-black leading-tight mb-6">
-        お子さんのAI利用、<br>
-        <span class="text-accent">このままで大丈夫</span>ですか？
-      </h1>
-      <p class="text-lg text-blue-100 leading-relaxed mb-8">
-        「ChatGPTで宿題やった」と子供が言い出した——<br>
-        禁止する？見て見ぬふりをする？<br>
-        <strong class="text-white">その前に、親が知っておくべきことがあります。</strong>
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="container">
+      <p class="masthead-date">2026年 保護者向け特集</p>
+      <h1 class="masthead-title">親のためのAIリテラシー講座</h1>
+      <p class="masthead-sub">地域限定・少人数制・全3回</p>
+    </div>
+  </header>
+
+  <!-- Headline -->
+  <section class="headline-section">
+    <div class="container">
+      <span class="headline-kicker">緊急特集</span>
+      <h2 class="headline-main">
+        「ChatGPTで<br>宿題やった」と<br>
+        子供が言い出した日、<br>
+        あなたは<em>何と答えますか</em>。
+      </h2>
+      <p class="headline-lead">
+        禁止する？&ensp;見て見ぬふりをする？<br>
+        <strong>その前に、親が知っておくべきことがある</strong>。
       </p>
-      <a href="#cta" class="inline-block bg-accent text-dark font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-yellow-400 transition cta-pulse">
-        無料ガイドブックを受け取る
-      </a>
     </div>
   </section>
 
-  <!-- Problem -->
-  <section class="py-14 px-4 bg-gray-50">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">こんな不安、ありませんか？</h2>
-      <div class="space-y-4">
-        <div class="bg-white rounded-xl p-5 shadow-sm border-l-4 border-red-400">
-          <p class="font-medium">"子供がAIで作文を書いてるけど、<strong>これって学力下がらない？</strong>"</p>
+  <!-- Anxiety -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-head reveal">保護者の声が、集まっている</h2>
+      <div class="anxiety-list">
+        <div class="anxiety-item reveal">
+          <p>子供がAIで作文を書いてるけど、<strong>これって学力下がらない？</strong></p>
         </div>
-        <div class="bg-white rounded-xl p-5 shadow-sm border-l-4 border-red-400">
-          <p class="font-medium">"変なことを聞いて、<strong>おかしな情報を信じ込まないか心配</strong>"</p>
+        <div class="anxiety-item reveal">
+          <p>変なことを聞いて、<strong>おかしな情報を信じ込まないか心配</strong></p>
         </div>
-        <div class="bg-white rounded-xl p-5 shadow-sm border-l-4 border-red-400">
-          <p class="font-medium">"そもそも<strong>自分がAIをよくわかってない</strong>のに、どう教えればいいの？"</p>
+        <div class="anxiety-item reveal">
+          <p>そもそも<strong>自分がAIをよくわかってない</strong>のに、どう教えればいいの？</p>
         </div>
-        <div class="bg-white rounded-xl p-5 shadow-sm border-l-4 border-red-400">
-          <p class="font-medium">"学校は何も言わないけど、<strong>家庭でルールを決めるべき？</strong>"</p>
+        <div class="anxiety-item reveal">
+          <p>学校は何も言わないけど、<strong>家庭でルールを決めるべき？</strong></p>
         </div>
       </div>
-      <p class="text-center text-gray-500 mt-8 text-sm">
-        ※ 2026年現在、小学生の約40%がAIツールに触れた経験があるとされています
-      </p>
+      <p class="anxiety-note">※ 2026年現在、小学生の約4割がAIツールに触れた経験があるとされています</p>
     </div>
   </section>
 
-  <!-- Solution -->
-  <section class="py-14 px-4">
-    <div class="max-w-lg mx-auto text-center">
-      <h2 class="text-2xl font-bold mb-4">答えは<span class="text-primary">「禁止」でも「放置」でもありません</span></h2>
-      <p class="text-gray-600 mb-10 leading-relaxed">
+  <!-- Answer -->
+  <div class="answer-banner reveal">
+    <div class="container">
+      <h2>答えは<span>「禁止」</span>でも<br><span>「放置」</span>でもない。</h2>
+      <p>
         大切なのは、親が先にAIを理解して、<br>
         <strong>子供と一緒にルールを作ること</strong>です。
       </p>
-      <div class="grid gap-6">
-        <div class="bg-blue-50 rounded-2xl p-6 text-left">
-          <div class="text-3xl mb-3">&#128218;</div>
-          <h3 class="font-bold text-lg mb-2">第1回：AIを体験する</h3>
-          <p class="text-gray-600 text-sm">実際にChatGPTや画像生成AIを触って「何ができて、何ができないか」を体感します。</p>
+    </div>
+  </div>
+
+  <!-- Course -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-head reveal">全3回、親が先に学ぶ講座</h2>
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <div class="step-body">
+          <h3>AIを体験する</h3>
+          <p>実際にChatGPTや画像生成AIを触って「何ができて、何ができないか」を体感します。講義ではなく、手を動かす90分。</p>
         </div>
-        <div class="bg-blue-50 rounded-2xl p-6 text-left">
-          <div class="text-3xl mb-3">&#128736;&#65039;</div>
-          <h3 class="font-bold text-lg mb-2">第2回：家庭のルールを作る</h3>
-          <p class="text-gray-600 text-sm">年齢別のリスクと活用法を学び、「うちのAIルール」をワークショップ形式で作ります。</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <div class="step-body">
+          <h3>家庭のルールを作る</h3>
+          <p>年齢別のリスクと活用法を学び、ワークシートを使って「うちのAIルール」を組み立てます。持ち帰ってそのまま使えます。</p>
         </div>
-        <div class="bg-blue-50 rounded-2xl p-6 text-left">
-          <div class="text-3xl mb-3">&#128106;</div>
-          <h3 class="font-bold text-lg mb-2">第3回：親子で実践する</h3>
-          <p class="text-gray-600 text-sm">お子さんと一緒にAIを使って作品を作ります。ルールの中で楽しく使う体験を。</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <div class="step-body">
+          <h3>親子で実践する</h3>
+          <p>お子さんと一緒に参加する回。AIを使って作品を作りながら、「ルールの中で楽しく使う」を体験します。</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust -->
-  <section class="py-14 px-4 bg-gray-50">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">選ばれる理由</h2>
-      <div class="space-y-5">
-        <div class="flex gap-4 items-start">
-          <span class="text-primary font-black text-xl shrink-0">01</span>
+  <!-- Reasons -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-head reveal">この講座が選ばれる理由</h2>
+      <div class="reason-grid">
+        <div class="reason-item reveal">
+          <div class="reason-num">壱</div>
           <div>
-            <h3 class="font-bold">専門用語ゼロ。完全初心者向け</h3>
-            <p class="text-gray-500 text-sm mt-1">パソコンが苦手な方でも安心。スマホだけで参加できます。</p>
+            <h3>専門用語ゼロ。完全初心者向け</h3>
+            <p>パソコンが苦手な方にこそ来てほしい。スマホだけで参加できます。</p>
           </div>
         </div>
-        <div class="flex gap-4 items-start">
-          <span class="text-primary font-black text-xl shrink-0">02</span>
+        <div class="reason-item reveal">
+          <div class="reason-num">弐</div>
           <div>
-            <h3 class="font-bold">少人数制で質問しやすい</h3>
-            <p class="text-gray-500 text-sm mt-1">最大8名の少人数クラス。「こんなこと聞いていいのかな」も大歓迎。</p>
+            <h3>最大8名。質問しやすい少人数制</h3>
+            <p>「こんなこと聞いていいのかな」も大歓迎。一方通行の講義ではありません。</p>
           </div>
         </div>
-        <div class="flex gap-4 items-start">
-          <span class="text-primary font-black text-xl shrink-0">03</span>
+        <div class="reason-item reveal">
+          <div class="reason-num">参</div>
           <div>
-            <h3 class="font-bold">地域密着。対面だから安心</h3>
-            <p class="text-gray-500 text-sm mt-1">オンラインではなく、顔の見える対面形式。お子さん連れもOKです。</p>
+            <h3>地域密着。顔が見える対面形式</h3>
+            <p>オンラインではなく、同じ地域の親同士が集まる場。お子さん連れもOKです。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Voice -->
-  <section class="py-14 px-4">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8">参加された方の声</h2>
-      <div class="space-y-4">
-        <div class="bg-white border rounded-xl p-5">
-          <p class="text-gray-700 text-sm leading-relaxed mb-3">"自分がAIを全く知らなかったことに気づきました。子供に「ダメ」と言う前に、まず自分が触ってみてよかった。"</p>
-          <p class="text-gray-400 text-xs">— 小学5年生のお母さん（40代）</p>
-        </div>
-        <div class="bg-white border rounded-xl p-5">
-          <p class="text-gray-700 text-sm leading-relaxed mb-3">"家族で「AI使っていいルール」を決められたのが一番の収穫。子供も納得して守ってくれています。"</p>
-          <p class="text-gray-400 text-xs">— 中学1年生のお父さん（30代）</p>
-        </div>
+  <!-- Voices -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-head reveal">参加された方の声</h2>
+      <div class="voice-item reveal">
+        <p class="voice-text">自分がAIを全く知らなかったことに気づきました。子供に「ダメ」と言う前に、まず自分が触ってみてよかった。</p>
+        <p class="voice-attr">— 小学5年生の母（40代）</p>
       </div>
-      <p class="text-center text-gray-400 text-xs mt-4">※ 体験モニターの方の感想です</p>
+      <div class="voice-item reveal">
+        <p class="voice-text">家族で「AI使っていいルール」を決められたのが一番の収穫。子供も納得して守ってくれています。</p>
+        <p class="voice-attr">— 中学1年生の父（30代）</p>
+      </div>
+      <p class="anxiety-note" style="margin-top: 16px;">※ 体験モニターの方の感想です</p>
     </div>
   </section>
 
   <!-- CTA -->
-  <section id="cta" class="gradient-bg py-16 px-4">
-    <div class="max-w-lg mx-auto text-center text-white">
-      <h2 class="text-2xl font-bold mb-4">まずは無料ガイドブックから</h2>
-      <p class="text-blue-100 mb-8 leading-relaxed">
-        「子供のAI利用 親が知っておくべき5つのこと」<br>
-        LINEで今すぐ受け取れます。
-      </p>
-      <a href="#" class="inline-block bg-[#06C755] text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-green-500 transition cta-pulse">
-        LINEで無料ガイドを受け取る
-      </a>
-      <p class="text-blue-200 text-xs mt-4">※ 無理な勧誘は一切ありません</p>
-    </div>
+  <section id="cta" class="cta-section">
+    <h2>まずは無料ガイドブックから</h2>
+    <p>「子供のAI利用&emsp;親が知っておくべき5つのこと」<br>LINEで今すぐ受け取れます。</p>
+    <a href="#" class="cta-btn">LINEで無料ガイドを受け取る</a>
+    <p class="cta-note">※ 無理な勧誘は一切ありません</p>
   </section>
 
   <!-- Footer -->
-  <footer class="py-8 px-4 text-center text-gray-400 text-xs">
-    <p>&copy; 2026 親のためのAIリテラシー講座</p>
-    <p class="mt-1">
-      <a href="#" class="underline">プライバシーポリシー</a> ・
-      <a href="#" class="underline">特定商取引法に基づく表記</a>
-    </p>
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 親のためのAIリテラシー講座</p>
+      <p style="margin-top: 4px;">
+        <a href="#">プライバシーポリシー</a>&ensp;/&ensp;<a href="#">特定商取引法に基づく表記</a>
+      </p>
+    </div>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
