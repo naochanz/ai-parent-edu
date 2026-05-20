@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>禁止も放置もしっくりこない親御さんへ | 親のためのAIリテラシー講座</title>
+  <meta name="description" content="AIとの付き合い方、正解がわからなくて当たり前。親子で一緒に「ちょうどいい距離」を見つけませんか。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] },
+          colors: {
+            primary: '#059669',
+            accent: '#f59e0b',
+            warm: '#fef3c7',
+            dark: '#1e293b',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-bg { background: linear-gradient(135deg, #064e3b 0%, #059669 100%); }
+    .warm-bg { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
+    .cta-pulse { animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+  </style>
+</head>
+<body class="font-sans text-dark bg-white">
+
+  <!-- Hero -->
+  <section class="warm-bg py-16 px-4">
+    <div class="max-w-lg mx-auto text-center">
+      <p class="text-primary font-bold text-sm tracking-wide mb-4">&#127793; 保護者のための、やさしいAI入門</p>
+      <h1 class="text-3xl md:text-4xl font-black leading-tight mb-6 text-dark">
+        禁止も放置も<br>
+        <span class="text-primary">しっくりこない</span>親御さんへ
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed mb-8">
+        AIとの付き合い方に正解がわからなくて当たり前。<br>
+        だって、<strong>私たち親の世代にはなかった</strong>ものだから。<br>
+        <span class="text-primary font-medium">一緒に「ちょうどいい距離」を見つけませんか。</span>
+      </p>
+      <a href="#cta" class="inline-block bg-primary text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-emerald-600 transition cta-pulse">
+        無料ガイドブックを受け取る
+      </a>
+    </div>
+  </section>
+
+  <!-- Empathy -->
+  <section class="py-14 px-4">
+    <div class="max-w-lg mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-3">みんな同じことで悩んでいます</h2>
+      <p class="text-center text-gray-500 mb-8 text-sm">ある保護者アンケートより</p>
+      <div class="space-y-4">
+        <div class="bg-gray-50 rounded-xl p-5">
+          <p class="text-gray-700 leading-relaxed">
+            &#128172; "禁止したら「友達はみんな使ってる」と言われた。でも自由にさせるのも怖い。<strong>ちょうどいいラインがわからない。</strong>"
+          </p>
+          <p class="text-gray-400 text-xs mt-2">— 小学6年生のお母さん</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <p class="text-gray-700 leading-relaxed">
+            &#128172; "AI自体は悪いものじゃないと思う。でも<strong>自分が使い方を知らないのに、子供に教えられるわけがない。</strong>"
+          </p>
+          <p class="text-gray-400 text-xs mt-2">— 中学1年生のお父さん</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-5">
+          <p class="text-gray-700 leading-relaxed">
+            &#128172; "ネットで調べても情報が多すぎて。<strong>うちの子の場合はどうすればいいの？</strong>って思ってしまう。"
+          </p>
+          <p class="text-gray-400 text-xs mt-2">— 小学3年生のお母さん</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Message -->
+  <section class="py-14 px-4 bg-emerald-50">
+    <div class="max-w-lg mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-6">
+        完璧な答えじゃなくていい。<br>
+        <span class="text-primary">「うちなりのルール」</span>があればいい。
+      </h2>
+      <p class="text-gray-600 leading-relaxed">
+        スマホを持たせるとき、ルールを決めましたよね。<br>
+        ゲームの時間も、家庭ごとに違いますよね。<br><br>
+        AIも同じ。<strong>「うちはこうする」</strong>を<br>
+        親子で話し合って決められたら、それで十分です。<br><br>
+        この講座は、そのための<strong>きっかけと道具</strong>を<br>
+        お渡しする場所です。
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-14 px-4">
+    <div class="max-w-lg mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-10">3回の講座でやること</h2>
+      <div class="space-y-8">
+        <div class="relative pl-8 border-l-2 border-primary">
+          <div class="absolute -left-3 top-0 bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</div>
+          <h3 class="font-bold text-lg mb-2">まず、触ってみる</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            AIって何？を体で理解する回。ChatGPTに質問したり、AIに絵を描かせたり。
+            「へぇ〜こんなことできるんだ」「でもこれは苦手なんだ」を実感してもらいます。
+          </p>
+          <p class="text-primary text-xs mt-2 font-medium">所要時間: 約90分 / お子さん不要</p>
+        </div>
+        <div class="relative pl-8 border-l-2 border-primary">
+          <div class="absolute -left-3 top-0 bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</div>
+          <h3 class="font-bold text-lg mb-2">「うちのルール」を作る</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            「宿題にAIを使っていい？」「何歳から？」「1日何分？」——
+            よくあるケースを一緒に考えながら、ワークシートに書き出していきます。
+            正解はないけど、<strong>考え方のフレームワーク</strong>が手に入ります。
+          </p>
+          <p class="text-primary text-xs mt-2 font-medium">所要時間: 約90分 / お子さん不要</p>
+        </div>
+        <div class="relative pl-8 border-l-2 border-primary">
+          <div class="absolute -left-3 top-0 bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</div>
+          <h3 class="font-bold text-lg mb-2">親子で一緒にやってみる</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            お子さんと一緒に参加する回。AIを使ってオリジナルキャラクターやお話を作ります。
+            「ルールの中で楽しく使う」を親子で体験する時間です。
+          </p>
+          <p class="text-primary text-xs mt-2 font-medium">所要時間: 約90分 / 親子で参加</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atmosphere -->
+  <section class="py-14 px-4 bg-gray-50">
+    <div class="max-w-lg mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-8">こんな雰囲気の講座です</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl p-5 text-center">
+          <div class="text-3xl mb-2">&#9749;</div>
+          <p class="text-sm font-medium">カフェみたいにリラックス</p>
+        </div>
+        <div class="bg-white rounded-xl p-5 text-center">
+          <div class="text-3xl mb-2">&#128587;</div>
+          <p class="text-sm font-medium">最大8名の少人数</p>
+        </div>
+        <div class="bg-white rounded-xl p-5 text-center">
+          <div class="text-3xl mb-2">&#128172;</div>
+          <p class="text-sm font-medium">「初歩的な質問」大歓迎</p>
+        </div>
+        <div class="bg-white rounded-xl p-5 text-center">
+          <div class="text-3xl mb-2">&#128241;</div>
+          <p class="text-sm font-medium">スマホだけでOK</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Voice -->
+  <section class="py-14 px-4">
+    <div class="max-w-lg mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-8">参加された方の声</h2>
+      <div class="space-y-4">
+        <div class="bg-white border rounded-xl p-5">
+          <p class="text-gray-700 text-sm leading-relaxed mb-3">"「正解がない」と言ってもらえたのが、一番ラクになりました。完璧じゃなくていいんだ、って。"</p>
+          <p class="text-gray-400 text-xs">— 小学3年生のお母さん（30代）</p>
+        </div>
+        <div class="bg-white border rounded-xl p-5">
+          <p class="text-gray-700 text-sm leading-relaxed mb-3">"同じ悩みを持つ親同士で話せたのがよかった。うちだけじゃないんだなって安心しました。"</p>
+          <p class="text-gray-400 text-xs">— 小学5年生・中学1年生のお母さん（40代）</p>
+        </div>
+        <div class="bg-white border rounded-xl p-5">
+          <p class="text-gray-700 text-sm leading-relaxed mb-3">"3回目に娘と参加して、帰り道に『またやりたい！』って。あの笑顔が見られただけで参加した甲斐がありました。"</p>
+          <p class="text-gray-400 text-xs">— 小学4年生のお父さん（40代）</p>
+        </div>
+      </div>
+      <p class="text-center text-gray-400 text-xs mt-4">※ 体験モニターの方の感想です</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="gradient-bg py-16 px-4">
+    <div class="max-w-lg mx-auto text-center text-white">
+      <h2 class="text-2xl font-bold mb-4">まずは、読むだけでOK</h2>
+      <p class="text-emerald-100 mb-8 leading-relaxed">
+        「親子のAIルール かんたんガイドブック」<br>
+        LINEでお送りします。気軽にどうぞ。
+      </p>
+      <a href="#" class="inline-block bg-[#06C755] text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:bg-green-500 transition cta-pulse">
+        LINEで無料ガイドを受け取る
+      </a>
+      <p class="text-emerald-200 text-xs mt-4">※ 読むだけでも大丈夫。無理な勧誘はしません。</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-4 text-center text-gray-400 text-xs">
+    <p>&copy; 2026 親のためのAIリテラシー講座</p>
+    <p class="mt-1">
+      <a href="#" class="underline">プライバシーポリシー</a> ・
+      <a href="#" class="underline">特定商取引法に基づく表記</a>
+    </p>
+  </footer>
+
+</body>
+</html>
