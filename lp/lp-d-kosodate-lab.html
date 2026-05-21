@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI×子育てラボ | 親がAIを学ぶことで、子どもと未来を切り拓く力を。</title>
+  <meta name="description" content="子育て世代のためのAI入門講座。専門用語なし、スマホだけでOK。親子で一緒にAI時代を楽しもう。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink: #e8637a;
+      --pink-light: #fce4e8;
+      --pink-bg: #fef6f7;
+      --coral: #f2946b;
+      --coral-light: #fde8dd;
+      --blue: #5ba4d9;
+      --blue-light: #dfeefb;
+      --blue-bg: #f0f7fd;
+      --purple: #8b7bc6;
+      --purple-light: #ece8f6;
+      --mint: #5dc2a6;
+      --mint-light: #ddf3ec;
+      --yellow: #f5c842;
+      --yellow-light: #fef6d8;
+      --ink: #2d2b37;
+      --ink-soft: #5c5868;
+      --ink-faint: #9994a8;
+      --bg: #fffbfc;
+      --card: #ffffff;
+      --round: 'M PLUS Rounded 1c', sans-serif;
+      --gothic: 'Zen Kaku Gothic New', sans-serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--gothic);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* =============================================
+       HEADER
+    ============================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 251, 252, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--round);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--pink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .header-nav {
+      display: none;
+    }
+    .header-cta {
+      font-family: var(--round);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      padding: 8px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .header-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(232, 99, 122, 0.3);
+    }
+
+    @media (min-width: 768px) {
+      .header-nav {
+        display: flex;
+        gap: 24px;
+        list-style: none;
+      }
+      .header-nav a {
+        font-size: 0.82rem;
+        color: var(--ink-soft);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .header-nav a:hover { color: var(--pink); }
+    }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 48px 20px 40px;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(91, 164, 217, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(232, 99, 122, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #fffbfc 0%, #fef6f7 100%);
+    }
+    /* decorative blobs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(91, 164, 217, 0.1), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -60px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(242, 148, 107, 0.08), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-kicker {
+      display: inline-block;
+      font-family: var(--round);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--pink);
+      background: var(--pink-light);
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--round);
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .hero h1 .em-pink {
+      color: var(--pink);
+    }
+    .hero h1 .em-blue {
+      color: var(--blue);
+    }
+    .hero-sub {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.9;
+      margin-bottom: 28px;
+    }
+    .hero-features {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .hero-feat {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .hero-feat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 8px;
+    }
+    .hero-feat-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-feat-icon.pink { background: var(--pink-light); }
+    .hero-feat-icon.blue { background: var(--blue-light); }
+    .hero-feat-icon.purple { background: var(--purple-light); }
+    .hero-feat .label {
+      font-family: var(--round);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--pink);
+      margin-bottom: 2px;
+    }
+    .hero-feat .desc {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    /* hero image placeholder */
+    .hero-image {
+      margin-top: 32px;
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      background:
+        linear-gradient(135deg, var(--pink-light), var(--blue-light));
+      border: 2px dashed rgba(0,0,0,0.08);
+      padding: 20px;
+      line-height: 1.6;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image .placeholder-label {
+      background: rgba(255,255,255,0.8);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: var(--round);
+      font-weight: 500;
+    }
+    .hero-image .placeholder-label strong {
+      display: block;
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-cta-area {
+      margin-top: 28px;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .hero-cta-note {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--round);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      padding: 16px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(232, 99, 122, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(232, 99, 122, 0.35);
+    }
+    .btn-primary .arrow {
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+    .btn-primary:hover .arrow { transform: translateX(3px); }
+    .hero-cta-sub {
+      margin-top: 10px;
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+    }
+
+    @media (min-width: 768px) {
+      .hero { padding: 64px 40px 56px; }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-image { margin-top: 0; aspect-ratio: 1/1; }
+      .hero-cta-area { grid-column: 1 / -1; }
+    }
+
+    /* =============================================
+       CONCERNS
+    ============================================= */
+    .concerns {
+      padding: 56px 20px;
+      text-align: center;
+    }
+    .section-title {
+      font-family: var(--round);
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .section-deco {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+    .section-deco span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pink-light);
+    }
+    .section-deco span:nth-child(2) { background: var(--coral-light); }
+    .section-deco span:nth-child(3) { background: var(--blue-light); }
+    .section-deco span:nth-child(4) { background: var(--purple-light); }
+    .section-deco span:nth-child(5) { background: var(--mint-light); }
+
+    .concern-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .concern-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px 16px 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      text-align: center;
+    }
+    .concern-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .concern-card .illust {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .concern-card .illust img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .concern-card:nth-child(1) .illust { background: var(--pink-light); }
+    .concern-card:nth-child(2) .illust { background: var(--blue-light); }
+    .concern-card:nth-child(3) .illust { background: var(--coral-light); }
+    .concern-card:nth-child(4) .illust { background: var(--purple-light); }
+    .concern-card:nth-child(5) .illust { background: var(--mint-light); }
+    .concern-card p {
+      font-family: var(--round);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    @media (min-width: 768px) {
+      .concern-grid {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 960px;
+      }
+      .concern-card:last-child:nth-child(odd) {
+        grid-column: auto;
+        max-width: none;
+      }
+    }
+
+    /* =============================================
+       RESOLVE BANNER
+    ============================================= */
+    .resolve-banner {
+      padding: 28px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--pink-light), var(--coral-light), var(--blue-light));
+    }
+    .resolve-banner p {
+      font-family: var(--round);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .resolve-banner strong {
+      color: var(--pink);
+      border-bottom: 2px solid var(--pink);
+      padding-bottom: 2px;
+    }
+
+    /* =============================================
+       BENEFITS
+    ============================================= */
+    .benefits {
+      padding: 56px 20px;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(232, 99, 122, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 50%, rgba(91, 164, 217, 0.03) 0%, transparent 50%),
+        #fffbfc;
+    }
+    .benefits .section-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .benefits .section-title .num {
+      color: var(--pink);
+    }
+
+    .benefit-grid {
+      display: grid;
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .benefit-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .benefit-num {
+      font-family: var(--round);
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .benefit-card:nth-child(1) .benefit-num { color: var(--pink); }
+    .benefit-card:nth-child(2) .benefit-num { color: var(--blue); }
+    .benefit-card:nth-child(3) .benefit-num { color: var(--purple); }
+    .benefit-card h3 {
+      font-family: var(--round);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .benefit-card h3 .em {
+      color: var(--pink);
+    }
+    .benefit-card:nth-child(2) h3 .em { color: var(--blue); }
+    .benefit-card:nth-child(3) h3 .em { color: var(--purple); }
+
+    .benefit-card .illust {
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      margin-bottom: 16px;
+      border: 2px dashed rgba(0,0,0,0.06);
+      padding: 12px;
+      line-height: 1.5;
+      font-family: var(--round);
+    }
+    .benefit-card:nth-child(1) .illust { background: var(--pink-bg); }
+    .benefit-card:nth-child(2) .illust { background: var(--blue-bg); }
+    .benefit-card:nth-child(3) .illust { background: linear-gradient(135deg, var(--purple-light), var(--pink-light)); }
+
+    .benefit-card .desc {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    @media (min-width: 768px) {
+      .benefit-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* =============================================
+       CURRICULUM + FEATURES (2 col)
+    ============================================= */
+    .details {
+      padding: 56px 20px;
+      background: var(--card);
+    }
+    .details-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      gap: 40px;
+    }
+    .details-col h2 {
+      font-family: var(--round);
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--pink-light);
+    }
+    .curriculum-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .curriculum-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+    .curriculum-list .dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      padding: 5px;
+    }
+    .curriculum-list .dot img { width: 100%; height: 100%; object-fit: contain; }
+    .curriculum-list li:nth-child(1) .dot { background: var(--pink-light); }
+    .curriculum-list li:nth-child(2) .dot { background: var(--coral-light); }
+    .curriculum-list li:nth-child(3) .dot { background: var(--blue-light); }
+    .curriculum-list li:nth-child(4) .dot { background: var(--purple-light); }
+    .curriculum-list li:nth-child(5) .dot { background: var(--mint-light); }
+
+    .features-col h2 {
+      border-bottom-color: var(--blue-light);
+    }
+    .feat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .feat-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .feat-item .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--blue-light);
+      flex-shrink: 0;
+      margin-top: 2px;
+      padding: 5px;
+    }
+    .feat-item .icon img { width: 100%; height: 100%; object-fit: contain; }
+    .feat-item h4 {
+      font-family: var(--round);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .feat-item p {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      line-height: 1.6;
+    }
+
+    .details-illust {
+      margin-top: 24px;
+      width: 100%;
+      aspect-ratio: 3/2;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--blue-light), var(--purple-light));
+      border: 2px dashed rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      font-family: var(--round);
+      padding: 12px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 768px) {
+      .details-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    .testimonials {
+      padding: 56px 20px;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--pink-bg) 100%);
+    }
+    .testimonials .section-title {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .testimonials .section-sub {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      margin-bottom: 32px;
+    }
+    .testi-grid {
+      display: grid;
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .testi-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .testi-card .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      padding: 8px;
+    }
+    .testi-card .avatar img { width: 100%; height: 100%; object-fit: contain; }
+    .testi-card:nth-child(1) .avatar { background: var(--pink-light); }
+    .testi-card:nth-child(2) .avatar { background: var(--blue-light); }
+    .testi-card:nth-child(3) .avatar { background: var(--mint-light); }
+    .testi-card h4 {
+      font-family: var(--round);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .testi-card p {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+    .testi-card .who {
+      margin-top: 12px;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+    }
+    .testi-note {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+    }
+
+    @media (min-width: 768px) {
+      .testi-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* =============================================
+       BOTTOM CTA
+    ============================================= */
+    .bottom-cta {
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #8b7bc6 0%, #e8637a 40%, #f2946b 70%, #5ba4d9 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bottom-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+    .bottom-cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .bottom-cta h2 {
+      font-family: var(--round);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .bottom-cta .cta-box {
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .bottom-cta .cta-box .note {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+    .bottom-cta .cta-box .sub {
+      margin-top: 10px;
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      padding: 28px 20px;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      background: var(--card);
+      border-top: 1px solid rgba(0,0,0,0.04);
+    }
+    footer a { color: var(--ink-faint); }
+
+    /* =============================================
+       ANIMATIONS
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">AI</span>
+        AI×子育てラボ
+      </a>
+      <nav>
+        <ul class="header-nav">
+          <li><a href="#benefits">講座の特徴</a></li>
+          <li><a href="#curriculum">学べること</a></li>
+          <li><a href="#testimonials">受講生の声</a></li>
+        </ul>
+      </nav>
+      <a href="#cta" class="header-cta">無料で詳細を受け取る</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <span class="hero-kicker reveal">子育て世代のためのAI入門講座</span>
+        <h1 class="reveal">
+          <span class="em-pink">AI</span>を味方に、<br>
+          子どもの<span class="em-blue">未来</span>を<br>
+          もっと豊かに。
+        </h1>
+        <p class="hero-sub reveal">
+          親がAIを学ぶことで、<br>
+          子どもと未来を切り拓く力を。
+        </p>
+        <div class="hero-features reveal">
+          <div class="hero-feat">
+            <div class="hero-feat-icon pink"><img src="images/icon-shield.png" alt="安心"></div>
+            <div>
+              <p class="label">初心者でも安心</p>
+              <p class="desc">やさしく、わかりやすいステップ設計</p>
+            </div>
+          </div>
+          <div class="hero-feat">
+            <div class="hero-feat-icon blue"><img src="images/icon-parent-child.png" alt="親子"></div>
+            <div>
+              <p class="label">子どもとの向き合い方がわかる</p>
+              <p class="desc">AI時代の学び・ルール・活用法を学べる</p>
+            </div>
+          </div>
+          <div class="hero-feat">
+            <div class="hero-feat-icon purple"><img src="images/icon-clock.png" alt="時間"></div>
+            <div>
+              <p class="label">忙しくても続けられる</p>
+              <p class="desc">スキマ時間で学べるオンライン講座</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 画像プレースホルダー: HERO -->
+      <div class="hero-image reveal">
+        <div class="placeholder-label">
+          <strong>HERO IMAGE</strong>
+          素材①: 親子+ロボットマスコット
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="hero-cta-area reveal">
+        <p class="hero-cta-note">まずは無料で資料を受け取る（需要調査アンケートにご協力ください）</p>
+        <a href="#" class="btn-primary">
+          無料で詳細を受け取る
+          <span class="arrow">&rsaquo;</span>
+        </a>
+        <p class="hero-cta-sub">1分で完了！いつでも受講の可否は選べます</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONCERNS ===== -->
+  <section class="concerns reveal">
+    <div class="section-title">こんなお悩みありませんか？</div>
+    <div class="section-deco">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="concern-grid">
+      <div class="concern-card reveal">
+        <div class="illust"><img src="images/icon-question.png" alt="疑問"></div>
+        <p>AIって難しそう…<br>何から学べばいいの？</p>
+      </div>
+      <div class="concern-card reveal">
+        <div class="illust"><img src="images/icon-smartphone.png" alt="スマホ"></div>
+        <p>子どもがAIを使う時代、<br>どう向き合えばいいのか不安…</p>
+      </div>
+      <div class="concern-card reveal">
+        <div class="illust"><img src="images/icon-lightbulb.png" alt="ひらめき"></div>
+        <p>子どもの将来のために<br>今できることを知りたい！</p>
+      </div>
+      <div class="concern-card reveal">
+        <div class="illust"><img src="images/icon-gear.png" alt="仕事"></div>
+        <p>AIに仕事を奪われるって<br>聞くけど、将来が心配…</p>
+      </div>
+      <div class="concern-card reveal">
+        <div class="illust"><img src="images/icon-book.png" alt="情報"></div>
+        <p>情報が多すぎて、<br>何が正しいのかわからない…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESOLVE ===== -->
+  <div class="resolve-banner reveal">
+    <p>そのお悩み、この講座で<strong>解決できます</strong>！</p>
+  </div>
+
+  <!-- ===== BENEFITS ===== -->
+  <section id="benefits" class="benefits">
+    <div class="section-title reveal">この講座で得られる<span class="num">3</span>つの未来</div>
+    <div class="benefit-grid">
+      <div class="benefit-card reveal">
+        <p class="benefit-num">01</p>
+        <h3><span class="em">AIの基礎</span>が<br>やさしくわかる！</h3>
+        <div class="illust"><img src="images/icon-brain.png" alt="AIの基礎" style="width:64px;height:64px;object-fit:contain;"></div>
+        <p class="desc">専門用語は使いません。AIの仕組みや最新トレンドをやさしく学べます。</p>
+      </div>
+      <div class="benefit-card reveal">
+        <p class="benefit-num">02</p>
+        <h3><span class="em">子どもとAI</span>を<br>上手に活用できる！</h3>
+        <div class="illust"><img src="images/icon-parent-child.png" alt="親子" style="width:64px;height:64px;object-fit:contain;"></div>
+        <p class="desc">子どもの学びをサポートし、創造力や問題解決力を伸ばす関わり方がわかります。</p>
+      </div>
+      <div class="benefit-card reveal">
+        <p class="benefit-num">03</p>
+        <h3><span class="em">AI時代を生き抜く</span><br>マインドが身につく！</h3>
+        <div class="illust"><img src="images/icon-rocket.png" alt="未来" style="width:64px;height:64px;object-fit:contain;"></div>
+        <p class="desc">変化を恐れず、親子で未来を切り拓く力・考え方が身につきます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CURRICULUM + FEATURES ===== -->
+  <section id="curriculum" class="details">
+    <div class="details-inner">
+      <div class="details-col">
+        <h2>学べること</h2>
+        <ul class="curriculum-list">
+          <li>
+            <span class="dot"><img src="images/icon-brain.png" alt=""></span>
+            <span>AIってなに？基本の「き」からやさしく解説</span>
+          </li>
+          <li>
+            <span class="dot"><img src="images/icon-smartphone.png" alt=""></span>
+            <span>子どもにおすすめのAIツール紹介と使い方</span>
+          </li>
+          <li>
+            <span class="dot"><img src="images/icon-lightbulb.png" alt=""></span>
+            <span>学力・創造力を伸ばすAI活用アイデア</span>
+          </li>
+          <li>
+            <span class="dot"><img src="images/icon-lock.png" alt=""></span>
+            <span>AIとどう付き合う？ルール作りとリスク管理</span>
+          </li>
+          <li>
+            <span class="dot"><img src="images/icon-rocket.png" alt=""></span>
+            <span>教育・仕事・生活…AIで広がる未来の選択肢</span>
+          </li>
+        </ul>
+      </div>
+      <div class="details-col features-col">
+        <h2>講座の特徴</h2>
+        <div class="feat-list">
+          <div class="feat-item">
+            <div class="icon"><img src="images/icon-play.png" alt=""></div>
+            <div>
+              <h4>オンラインで完結</h4>
+              <p>自宅で好きな時間に学べる</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="icon"><img src="images/icon-clock.png" alt=""></div>
+            <div>
+              <h4>1回15〜20分の短時間動画</h4>
+              <p>スキマ時間で無理なく続けられる</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="icon"><img src="images/icon-chat.png" alt=""></div>
+            <div>
+              <h4>質問し放題のサポート付き</h4>
+              <p>わからないことはいつでも相談OK</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="icon"><img src="images/icon-gift.png" alt=""></div>
+            <div>
+              <h4>特典：AI活用ガイドブック</h4>
+              <p>受講者全員にプレゼント！</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-illust">
+          <img src="images/icon-gear.png" alt="" style="width:48px;height:48px;object-fit:contain;margin-right:8px;">
+          <img src="images/icon-brain.png" alt="" style="width:48px;height:48px;object-fit:contain;margin-right:8px;">
+          <img src="images/icon-sparkle.png" alt="" style="width:48px;height:48px;object-fit:contain;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials" class="testimonials">
+    <div class="section-title reveal">受講生の声</div>
+    <p class="section-sub">（イメージ）</p>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="avatar"><img src="images/icon-heart.png" alt=""></div>
+        <h4>不安が自信に変わりました！</h4>
+        <p>AIは難しいと思っていましたが、講座を受けて子どもと一緒に楽しめるようになりました！</p>
+        <p class="who">30代・小学生のママ</p>
+      </div>
+      <div class="testi-card reveal">
+        <div class="avatar"><img src="images/icon-sparkle.png" alt=""></div>
+        <h4>子どもの学びが広がりました！</h4>
+        <p>AIツールを使って自由研究や調べ学習がもっと楽しくなって、親子の会話も増えました。</p>
+        <p class="who">40代・中学生のママ</p>
+      </div>
+      <div class="testi-card reveal">
+        <div class="avatar"><img src="images/icon-thumbsup.png" alt=""></div>
+        <h4>未来への不安が減りました！</h4>
+        <p>変化の時代でも学び続ければ大丈夫だと前向きに。子どもの可能性を信じられるようになった。</p>
+        <p class="who">30代・年長のママ</p>
+      </div>
+    </div>
+    <p class="testi-note">※ 体験モニターの方の感想です</p>
+  </section>
+
+  <!-- ===== BOTTOM CTA ===== -->
+  <section id="cta" class="bottom-cta">
+    <div class="bottom-cta-inner reveal">
+      <h2>あなたとお子さんの未来のために、<br>今、はじめの一歩を踏み出しませんか？</h2>
+      <div class="cta-box">
+        <p class="note">まずは無料で資料を受け取る（需要調査アンケートにご協力ください）</p>
+        <a href="#" class="btn-primary">
+          無料で詳細を受け取る
+          <span class="arrow">&rsaquo;</span>
+        </a>
+        <p class="sub">1分で完了！いつでも受講の可否は選べます</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2026 AI×子育てラボ</p>
+    <p style="margin-top: 4px;">
+      <a href="#">プライバシーポリシー</a>&ensp;/&ensp;<a href="#">特定商取引法に基づく表記</a>
+    </p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
