@@ -3,39 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI×子育てラボ | 親がAIを学ぶことで、子どもと未来を切り拓く力を。</title>
+  <title>AI×子育てラボ | AIを味方に、子どもの未来をもっと豊かに。</title>
   <meta name="description" content="子育て世代のためのAI入門講座。専門用語なし、スマホだけでOK。親子で一緒にAI時代を楽しもう。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
-      --pink: #e8637a;
-      --pink-light: #fce4e8;
-      --pink-bg: #fef6f7;
-      --coral: #f2946b;
+      --pink: #e85a7a;
+      --pink-light: #fce4ea;
+      --pink-bg: #fff5f7;
+      --coral: #f2936b;
       --coral-light: #fde8dd;
-      --blue: #5ba4d9;
-      --blue-light: #dfeefb;
+      --orange: #f7a94b;
+      --blue: #58a6dc;
+      --blue-light: #e0effa;
       --blue-bg: #f0f7fd;
-      --purple: #8b7bc6;
-      --purple-light: #ece8f6;
-      --mint: #5dc2a6;
+      --purple: #9b8ad0;
+      --purple-light: #ede8f6;
+      --mint: #5cc2a6;
       --mint-light: #ddf3ec;
-      --yellow: #f5c842;
-      --yellow-light: #fef6d8;
-      --ink: #2d2b37;
-      --ink-soft: #5c5868;
+      --ink: #2d2b3a;
+      --ink-soft: #5c586a;
       --ink-faint: #9994a8;
       --bg: #fffbfc;
       --card: #ffffff;
       --round: 'M PLUS Rounded 1c', sans-serif;
       --gothic: 'Zen Kaku Gothic New', sans-serif;
     }
-
     html { font-size: 16px; scroll-behavior: smooth; }
-
     body {
       font-family: var(--gothic);
       color: var(--ink);
@@ -44,1084 +40,685 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
 
-    /* =============================================
-       HEADER
-    ============================================= */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 251, 252, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,252,253,0.95);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     .header-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      max-width: 1080px; margin: 0 auto;
+      padding: 10px 20px;
+      display: flex; align-items: center; justify-content: space-between;
     }
     .logo {
-      font-family: var(--round);
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--pink);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
+      font-family: var(--round); font-weight: 800; font-size: 1.1rem;
+      color: var(--ink); display: flex; align-items: center; gap: 6px;
     }
-    .logo-icon {
-      width: 28px;
-      height: 28px;
+    .logo-mark {
+      width: 26px; height: 26px; border-radius: 50%;
       background: linear-gradient(135deg, var(--pink), var(--coral));
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 0.55rem; font-weight: 800;
     }
-    .header-nav {
-      display: none;
+    .header-nav { display: none; list-style: none; gap: 22px; }
+    .header-nav a { font-size: 0.8rem; color: var(--ink-soft); font-weight: 500; }
+    .header-nav a:hover { color: var(--pink); }
+    .header-cta-btn {
+      font-family: var(--round); font-size: 0.72rem; font-weight: 700;
+      color: var(--pink); border: 1.5px solid var(--pink);
+      padding: 7px 16px; border-radius: 999px;
+      transition: all 0.2s;
     }
-    .header-cta {
-      font-family: var(--round);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #fff;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      padding: 8px 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .header-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(232, 99, 122, 0.3);
-    }
-
+    .header-cta-btn:hover { background: var(--pink); color: #fff; }
     @media (min-width: 768px) {
-      .header-nav {
-        display: flex;
-        gap: 24px;
-        list-style: none;
-      }
-      .header-nav a {
-        font-size: 0.82rem;
-        color: var(--ink-soft);
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s;
-      }
-      .header-nav a:hover { color: var(--pink); }
+      .header-nav { display: flex; }
     }
 
-    /* =============================================
-       HERO
-    ============================================= */
+    /* ===== HERO ===== */
     .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 48px 20px 40px;
+      position: relative; overflow: hidden;
+      padding: 40px 20px 0;
       background:
-        radial-gradient(ellipse at 80% 20%, rgba(91, 164, 217, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 80%, rgba(232, 99, 122, 0.06) 0%, transparent 50%),
-        linear-gradient(180deg, #fffbfc 0%, #fef6f7 100%);
+        radial-gradient(ellipse at 85% 10%, rgba(88,166,220,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 90%, rgba(232,90,122,0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #fffcfd 0%, #fff5f7 100%);
     }
-    /* decorative blobs */
+    /* decorative streaks */
     .hero::before {
       content: '';
-      position: absolute;
-      top: -60px;
-      right: -80px;
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(91, 164, 217, 0.1), transparent 70%);
+      position: absolute; top: 0; right: -50px;
+      width: 400px; height: 400px;
+      background: conic-gradient(
+        from 200deg at 50% 50%,
+        rgba(88,166,220,0.08),
+        rgba(155,138,208,0.05),
+        rgba(242,147,107,0.06),
+        transparent
+      );
       border-radius: 50%;
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      left: -60px;
-      width: 240px;
-      height: 240px;
-      background: radial-gradient(circle, rgba(242, 148, 107, 0.08), transparent 70%);
-      border-radius: 50%;
+      filter: blur(40px);
       pointer-events: none;
     }
     .hero-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
+      max-width: 1080px; margin: 0 auto;
+      position: relative; z-index: 1;
     }
     .hero-kicker {
       display: inline-block;
-      font-family: var(--round);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--pink);
-      background: var(--pink-light);
-      padding: 5px 14px;
-      border-radius: 999px;
-      margin-bottom: 20px;
+      font-family: var(--round); font-size: 0.72rem; font-weight: 700;
+      color: var(--pink); background: var(--pink-light);
+      padding: 4px 14px; border-radius: 999px;
+      margin-bottom: 18px;
     }
     .hero h1 {
-      font-family: var(--round);
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.5;
-      margin-bottom: 16px;
+      font-family: var(--round); font-weight: 800;
+      font-size: 2.2rem; line-height: 1.45;
+      margin-bottom: 14px; letter-spacing: -0.01em;
     }
-    .hero h1 .em-pink {
-      color: var(--pink);
-    }
-    .hero h1 .em-blue {
-      color: var(--blue);
-    }
+    .hero h1 .pink { color: var(--pink); }
+    .hero h1 .blue { color: var(--blue); }
     .hero-sub {
-      font-size: 0.9rem;
-      color: var(--ink-soft);
-      line-height: 1.9;
-      margin-bottom: 28px;
-    }
-    .hero-features {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-    .hero-feat {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .hero-feat-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      padding: 8px;
-    }
-    .hero-feat-icon img { width: 100%; height: 100%; object-fit: contain; }
-    .hero-feat-icon.pink { background: var(--pink-light); }
-    .hero-feat-icon.blue { background: var(--blue-light); }
-    .hero-feat-icon.purple { background: var(--purple-light); }
-    .hero-feat .label {
-      font-family: var(--round);
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: var(--pink);
-      margin-bottom: 2px;
-    }
-    .hero-feat .desc {
-      font-size: 0.82rem;
-      color: var(--ink-soft);
-      font-weight: 500;
+      font-size: 0.88rem; color: var(--ink-soft); line-height: 1.9;
+      margin-bottom: 24px;
     }
 
-    /* hero image placeholder */
-    .hero-image {
-      margin-top: 32px;
-      width: 100%;
-      aspect-ratio: 4/3;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--ink-faint);
-      background:
-        linear-gradient(135deg, var(--pink-light), var(--blue-light));
-      border: 2px dashed rgba(0,0,0,0.08);
-      padding: 20px;
-      line-height: 1.6;
+    /* hero feature badges */
+    .hero-badges { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .hero-badge {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(255,255,255,0.7); border-radius: 12px; padding: 12px 14px;
+      backdrop-filter: blur(4px);
+    }
+    .hero-badge-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; padding: 7px;
+    }
+    .hero-badge-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-badge-icon.pink { background: var(--pink-light); }
+    .hero-badge-icon.blue { background: var(--blue-light); }
+    .hero-badge-icon.purple { background: var(--purple-light); }
+    .hero-badge .lbl {
+      font-family: var(--round); font-size: 0.65rem; font-weight: 700;
+      color: var(--pink); margin-bottom: 1px;
+    }
+    .hero-badge:nth-child(2) .lbl { color: var(--blue); }
+    .hero-badge:nth-child(3) .lbl { color: var(--purple); }
+    .hero-badge .txt {
+      font-size: 0.82rem; color: var(--ink-soft); font-weight: 500; line-height: 1.5;
+    }
+
+    /* hero image area */
+    .hero-visual {
       position: relative;
+      margin-top: 24px;
+      width: 100%; aspect-ratio: 4/3;
+      border-radius: 20px 20px 0 0;
       overflow: hidden;
+      background: linear-gradient(135deg, var(--pink-light) 0%, var(--blue-light) 100%);
+      display: flex; align-items: center; justify-content: center;
     }
-    .hero-image .placeholder-label {
-      background: rgba(255,255,255,0.8);
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-family: var(--round);
-      font-weight: 500;
+    .hero-visual .placeholder {
+      text-align: center; padding: 20px;
+      font-family: var(--round); font-size: 0.8rem; color: var(--ink-faint);
     }
-    .hero-image .placeholder-label strong {
-      display: block;
-      color: var(--ink-soft);
-      font-size: 0.85rem;
-      margin-bottom: 4px;
+    .hero-visual .placeholder strong { display: block; font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 4px; }
+
+    /* speech bubble */
+    .speech-bubble {
+      position: absolute; top: 12px; right: 12px;
+      background: #fff; border-radius: 16px; padding: 8px 14px;
+      font-family: var(--round); font-size: 0.72rem; font-weight: 500;
+      color: var(--ink-soft); box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      line-height: 1.4;
+    }
+    .speech-bubble::after {
+      content: ''; position: absolute; bottom: -8px; right: 24px;
+      border: 6px solid transparent; border-top-color: #fff;
     }
 
-    .hero-cta-area {
-      margin-top: 28px;
-      background: var(--card);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-      text-align: center;
+    /* hero CTA box */
+    .hero-cta-box {
+      background: #fff; border-radius: 16px; padding: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      text-align: center; margin: -20px 12px 0; position: relative; z-index: 2;
     }
-    .hero-cta-note {
-      font-size: 0.75rem;
-      color: var(--ink-faint);
-      margin-bottom: 12px;
+    .hero-cta-box .note {
+      font-size: 0.72rem; color: var(--ink-faint); margin-bottom: 12px; line-height: 1.5;
     }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--round);
-      font-size: 1rem;
-      font-weight: 700;
-      color: #fff;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      padding: 16px 36px;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(232, 99, 122, 0.3);
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--round); font-size: 0.95rem; font-weight: 700;
+      color: #fff; background: linear-gradient(135deg, var(--pink), var(--coral));
+      padding: 14px 32px; border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(232,90,122,0.3);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(232, 99, 122, 0.35);
-    }
-    .btn-primary .arrow {
-      font-size: 1.2rem;
-      transition: transform 0.2s;
-    }
-    .btn-primary:hover .arrow { transform: translateX(3px); }
-    .hero-cta-sub {
-      margin-top: 10px;
-      font-size: 0.7rem;
-      color: var(--ink-faint);
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,90,122,0.35); }
+    .btn-cta .arr { font-size: 1.3rem; }
+    .hero-cta-box .sub {
+      margin-top: 10px; font-size: 0.68rem; color: var(--ink-faint);
     }
 
     @media (min-width: 768px) {
-      .hero { padding: 64px 40px 56px; }
-      .hero-inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        align-items: center;
-      }
-      .hero h1 { font-size: 2.4rem; }
-      .hero-image { margin-top: 0; aspect-ratio: 1/1; }
-      .hero-cta-area { grid-column: 1 / -1; }
+      .hero { padding: 56px 40px 0; }
+      .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero-visual { margin-top: 0; aspect-ratio: 1/1; border-radius: 20px; }
+      .hero-cta-box { grid-column: 1 / -1; margin: 20px 0 0; }
     }
 
-    /* =============================================
-       SECTION DIVIDER (wave decoration)
-    ============================================= */
-    .section-divider {
-      display: block;
-      width: 120px;
-      height: auto;
-      margin: 0 auto;
-      opacity: 0.6;
+    /* ===== WAVE DIVIDER ===== */
+    .wave-divider {
+      display: flex; justify-content: center; padding: 8px 0;
     }
+    .wave-divider img { width: 100px; opacity: 0.5; }
 
-    /* =============================================
-       DECO HELPERS
-    ============================================= */
-    .deco-sparkle {
-      position: absolute;
-      width: 80px;
-      height: auto;
-      opacity: 0.5;
-      pointer-events: none;
+    /* ===== CONCERNS ===== */
+    .concerns { padding: 48px 20px; text-align: center; }
+    .sec-title {
+      font-family: var(--round); font-size: 1.4rem; font-weight: 800;
+      margin-bottom: 6px; line-height: 1.5;
     }
-    .deco-blob-bg {
-      position: absolute;
-      width: 200px;
-      height: auto;
-      opacity: 0.3;
-      pointer-events: none;
-      z-index: 0;
+    .sec-deco {
+      display: flex; justify-content: center; gap: 6px; margin-bottom: 28px;
     }
-    .deco-quote-mark {
-      width: 28px;
-      height: auto;
-      opacity: 0.7;
-      margin-bottom: 8px;
+    .sec-deco i {
+      width: 7px; height: 3px; border-radius: 2px; display: block;
     }
+    .sec-deco i:nth-child(1) { background: var(--pink); }
+    .sec-deco i:nth-child(2) { background: var(--coral); }
+    .sec-deco i:nth-child(3) { background: var(--blue); }
+    .sec-deco i:nth-child(4) { background: var(--purple); }
+    .sec-deco i:nth-child(5) { background: var(--mint); }
 
-    /* =============================================
-       CONCERNS
-    ============================================= */
-    .concerns {
-      padding: 56px 20px;
-      text-align: center;
+    .concern-row {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+      max-width: 640px; margin: 0 auto;
     }
-    .section-title {
-      font-family: var(--round);
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-      line-height: 1.5;
+    .concern-item { text-align: center; }
+    .concern-item:last-child:nth-child(odd) {
+      grid-column: 1 / -1; max-width: 200px; margin: 0 auto;
     }
-    .section-deco {
-      display: flex;
-      justify-content: center;
-      gap: 4px;
-      margin-bottom: 32px;
+    .concern-illust {
+      width: 90px; height: 90px; margin: 0 auto 8px;
+      border-radius: 50%; padding: 18px;
+      display: flex; align-items: center; justify-content: center;
     }
-    .section-deco span {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--pink-light);
-    }
-    .section-deco span:nth-child(2) { background: var(--coral-light); }
-    .section-deco span:nth-child(3) { background: var(--blue-light); }
-    .section-deco span:nth-child(4) { background: var(--purple-light); }
-    .section-deco span:nth-child(5) { background: var(--mint-light); }
-
-    .concern-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .concern-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 20px 16px 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      text-align: center;
-    }
-    .concern-card:last-child:nth-child(odd) {
-      grid-column: 1 / -1;
-      max-width: 280px;
-      margin: 0 auto;
-    }
-    .concern-card .illust {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 12px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    .concern-card .illust img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .concern-card:nth-child(1) .illust { background: var(--pink-light); }
-    .concern-card:nth-child(2) .illust { background: var(--blue-light); }
-    .concern-card:nth-child(3) .illust { background: var(--coral-light); }
-    .concern-card:nth-child(4) .illust { background: var(--purple-light); }
-    .concern-card:nth-child(5) .illust { background: var(--mint-light); }
-    .concern-card p {
-      font-family: var(--round);
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--ink-soft);
-      line-height: 1.6;
-    }
-
-    @media (min-width: 768px) {
-      .concern-grid {
-        grid-template-columns: repeat(5, 1fr);
-        max-width: 960px;
-      }
-      .concern-card:last-child:nth-child(odd) {
-        grid-column: auto;
-        max-width: none;
-      }
-    }
-
-    /* =============================================
-       RESOLVE BANNER
-    ============================================= */
-    .resolve-banner {
-      padding: 28px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, var(--pink-light), var(--coral-light), var(--blue-light));
+    .concern-illust img { width: 100%; height: 100%; object-fit: contain; }
+    .concern-item:nth-child(1) .concern-illust { background: var(--pink-light); }
+    .concern-item:nth-child(2) .concern-illust { background: var(--blue-light); }
+    .concern-item:nth-child(3) .concern-illust { background: var(--coral-light); }
+    .concern-item:nth-child(4) .concern-illust { background: var(--purple-light); }
+    .concern-item:nth-child(5) .concern-illust { background: var(--mint-light); }
+    /* speech bubble around text */
+    .concern-text {
+      font-family: var(--round); font-size: 0.75rem; font-weight: 500;
+      color: var(--ink-soft); line-height: 1.5;
+      background: #fff; border-radius: 12px; padding: 10px 12px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
       position: relative;
-      overflow: hidden;
     }
-    .resolve-banner .ribbon-bg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 360px;
-      height: auto;
-      opacity: 0.2;
-      pointer-events: none;
-    }
-    .resolve-banner p {
-      font-family: var(--round);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--ink);
-    }
-    .resolve-banner strong {
-      color: var(--pink);
-      border-bottom: 2px solid var(--pink);
-      padding-bottom: 2px;
+    .concern-text::before {
+      content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-bottom-color: #fff;
     }
 
-    /* =============================================
-       BENEFITS
-    ============================================= */
+    @media (min-width: 768px) {
+      .concern-row { grid-template-columns: repeat(5, 1fr); max-width: 960px; }
+      .concern-item:last-child:nth-child(odd) { grid-column: auto; max-width: none; }
+    }
+
+    /* ===== RESOLVE BANNER ===== */
+    .resolve {
+      padding: 22px 20px; text-align: center;
+      background: linear-gradient(135deg, var(--pink-light), var(--coral-light), var(--blue-light));
+    }
+    .resolve p {
+      font-family: var(--round); font-size: 1.05rem; font-weight: 700;
+    }
+    .resolve strong {
+      color: var(--pink);
+      border-bottom: 2.5px solid var(--pink); padding-bottom: 1px;
+    }
+
+    /* ===== BENEFITS ===== */
     .benefits {
-      padding: 56px 20px;
+      padding: 48px 20px;
       background:
-        radial-gradient(ellipse at 30% 50%, rgba(232, 99, 122, 0.03) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 50%, rgba(91, 164, 217, 0.03) 0%, transparent 50%),
-        #fffbfc;
+        radial-gradient(ellipse at 25% 50%, rgba(232,90,122,0.03), transparent 50%),
+        radial-gradient(ellipse at 75% 50%, rgba(88,166,220,0.03), transparent 50%),
+        var(--bg);
     }
-    .benefits .section-title {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-    .benefits .section-title .num {
-      color: var(--pink);
-    }
+    .benefits .sec-title { text-align: center; margin-bottom: 32px; }
+    .benefits .sec-title .num { color: var(--pink); }
 
-    .benefit-grid {
-      display: grid;
-      gap: 24px;
-      max-width: 960px;
-      margin: 0 auto;
+    .benefit-row {
+      display: grid; gap: 20px; max-width: 960px; margin: 0 auto;
     }
     .benefit-card {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 28px 24px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      background: #fff; border-radius: 20px; padding: 24px 20px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05); text-align: center;
+      position: relative; overflow: hidden;
     }
-    .benefit-card .blob-bg {
-      position: absolute;
-      top: -20px;
-      right: -30px;
-      width: 160px;
-      height: auto;
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: 0;
+    .benefit-card .blob {
+      position: absolute; top: -20px; right: -30px;
+      width: 140px; opacity: 0.15; pointer-events: none;
     }
     .benefit-card > * { position: relative; z-index: 1; }
     .benefit-num {
-      font-family: var(--round);
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1;
-      margin-bottom: 4px;
+      font-family: var(--round); font-size: 2.2rem; font-weight: 800; line-height: 1;
     }
     .benefit-card:nth-child(1) .benefit-num { color: var(--pink); }
     .benefit-card:nth-child(2) .benefit-num { color: var(--blue); }
     .benefit-card:nth-child(3) .benefit-num { color: var(--purple); }
     .benefit-card h3 {
-      font-family: var(--round);
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      line-height: 1.5;
+      font-family: var(--round); font-size: 1rem; font-weight: 700;
+      line-height: 1.5; margin: 4px 0 14px;
     }
-    .benefit-card h3 .em {
-      color: var(--pink);
+    .benefit-card h3 .c1 { color: var(--pink); }
+    .benefit-card h3 .c2 { color: var(--blue); }
+    .benefit-card h3 .c3 { color: var(--purple); }
+    .benefit-illust {
+      width: 100%; aspect-ratio: 16/10; border-radius: 12px;
+      margin-bottom: 14px; display: flex; align-items: center; justify-content: center;
+      font-family: var(--round); font-size: 0.72rem; color: var(--ink-faint);
+      border: 2px dashed rgba(0,0,0,0.06); padding: 12px; line-height: 1.5;
     }
-    .benefit-card:nth-child(2) h3 .em { color: var(--blue); }
-    .benefit-card:nth-child(3) h3 .em { color: var(--purple); }
-
-    .benefit-card .illust {
-      width: 100%;
-      aspect-ratio: 16/10;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.72rem;
-      color: var(--ink-faint);
-      margin-bottom: 16px;
-      border: 2px dashed rgba(0,0,0,0.06);
-      padding: 12px;
-      line-height: 1.5;
-      font-family: var(--round);
-    }
-    .benefit-card:nth-child(1) .illust { background: var(--pink-bg); }
-    .benefit-card:nth-child(2) .illust { background: var(--blue-bg); }
-    .benefit-card:nth-child(3) .illust { background: linear-gradient(135deg, var(--purple-light), var(--pink-light)); }
-
+    .benefit-card:nth-child(1) .benefit-illust { background: var(--pink-bg); }
+    .benefit-card:nth-child(2) .benefit-illust { background: var(--blue-bg); }
+    .benefit-card:nth-child(3) .benefit-illust { background: linear-gradient(135deg,var(--purple-light),var(--pink-light)); }
     .benefit-card .desc {
-      font-size: 0.84rem;
-      color: var(--ink-soft);
-      line-height: 1.8;
+      font-size: 0.82rem; color: var(--ink-soft); line-height: 1.8;
     }
-
     @media (min-width: 768px) {
-      .benefit-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .benefit-row { grid-template-columns: repeat(3, 1fr); }
     }
 
-    /* =============================================
-       CURRICULUM + FEATURES (2 col)
-    ============================================= */
-    .details {
-      padding: 56px 20px;
-      background: var(--card);
-    }
+    /* ===== DETAILS (curriculum + features) ===== */
+    .details { padding: 48px 20px; background: #fff; }
     .details-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: grid;
-      gap: 40px;
+      max-width: 960px; margin: 0 auto;
+      display: grid; gap: 36px;
     }
     .details-col h2 {
-      font-family: var(--round);
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
+      font-family: var(--round); font-size: 1.2rem; font-weight: 800;
+      margin-bottom: 20px; padding-bottom: 10px;
       border-bottom: 2px solid var(--pink-light);
     }
-    .curriculum-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .cur-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .cur-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.86rem; color: var(--ink-soft); line-height: 1.7;
     }
-    .curriculum-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.88rem;
-      color: var(--ink-soft);
-      line-height: 1.7;
+    .cur-dot {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; padding: 5px; margin-top: 2px;
     }
-    .curriculum-list .dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-      padding: 5px;
-    }
-    .curriculum-list .dot img { width: 100%; height: 100%; object-fit: contain; }
-    .curriculum-list li:nth-child(1) .dot { background: var(--pink-light); }
-    .curriculum-list li:nth-child(2) .dot { background: var(--coral-light); }
-    .curriculum-list li:nth-child(3) .dot { background: var(--blue-light); }
-    .curriculum-list li:nth-child(4) .dot { background: var(--purple-light); }
-    .curriculum-list li:nth-child(5) .dot { background: var(--mint-light); }
+    .cur-dot img { width: 100%; height: 100%; object-fit: contain; }
+    .cur-list li:nth-child(1) .cur-dot { background: var(--pink-light); }
+    .cur-list li:nth-child(2) .cur-dot { background: var(--coral-light); }
+    .cur-list li:nth-child(3) .cur-dot { background: var(--blue-light); }
+    .cur-list li:nth-child(4) .cur-dot { background: var(--purple-light); }
+    .cur-list li:nth-child(5) .cur-dot { background: var(--mint-light); }
 
-    .features-col h2 {
-      border-bottom-color: var(--blue-light);
+    .feat-col h2 { border-bottom-color: var(--blue-light); }
+    .feat-list { display: flex; flex-direction: column; gap: 16px; }
+    .feat-row {
+      display: flex; align-items: flex-start; gap: 10px;
     }
-    .feat-list {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+    .feat-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--blue-light); flex-shrink: 0; padding: 5px; margin-top: 2px;
     }
-    .feat-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .feat-item .icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: var(--blue-light);
-      flex-shrink: 0;
-      margin-top: 2px;
-      padding: 5px;
-    }
-    .feat-item .icon img { width: 100%; height: 100%; object-fit: contain; }
-    .feat-item h4 {
-      font-family: var(--round);
-      font-size: 0.88rem;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .feat-item p {
-      font-size: 0.78rem;
-      color: var(--ink-faint);
-      line-height: 1.6;
-    }
+    .feat-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .feat-row h4 { font-family: var(--round); font-size: 0.86rem; font-weight: 700; margin-bottom: 2px; }
+    .feat-row p { font-size: 0.76rem; color: var(--ink-faint); line-height: 1.5; }
 
-    .details-illust {
-      margin-top: 24px;
-      width: 100%;
-      aspect-ratio: 3/2;
-      border-radius: 16px;
+    /* center AI illust between columns */
+    .details-center-illust {
+      margin: 20px auto 0; width: 100%; max-width: 200px;
+      aspect-ratio: 1/1; border-radius: 50%;
       background: linear-gradient(135deg, var(--blue-light), var(--purple-light));
-      border: 2px dashed rgba(0,0,0,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.72rem;
-      color: var(--ink-faint);
-      font-family: var(--round);
-      padding: 12px;
-      text-align: center;
-      line-height: 1.5;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--round); font-size: 0.7rem; color: var(--ink-faint);
+      border: 2px dashed rgba(0,0,0,0.05);
     }
 
     @media (min-width: 768px) {
-      .details-inner {
-        grid-template-columns: 1fr 1fr;
+      .details-inner { grid-template-columns: 1fr 1fr; }
+      .details-center-illust {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+        z-index: 2;
       }
+      .details { position: relative; }
     }
 
-    /* =============================================
-       TESTIMONIALS
-    ============================================= */
-    .testimonials {
-      padding: 56px 20px;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--pink-bg) 100%);
+    /* ===== TESTIMONIALS ===== */
+    .testi { padding: 48px 20px; background: linear-gradient(180deg, var(--bg), var(--pink-bg)); }
+    .testi .sec-title { text-align: center; margin-bottom: 4px; }
+    .testi .sec-sub {
+      text-align: center; font-size: 0.72rem; color: var(--ink-faint); margin-bottom: 28px;
     }
-    .testimonials .section-title {
-      text-align: center;
-      margin-bottom: 8px;
-    }
-    .testimonials .section-sub {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--ink-faint);
-      margin-bottom: 32px;
-    }
-    .testi-grid {
-      display: grid;
-      gap: 16px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
+    .testi-row { display: grid; gap: 14px; max-width: 960px; margin: 0 auto; }
     .testi-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 24px;
+      background: #fff; border-radius: 16px; padding: 20px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      display: flex; gap: 14px; align-items: flex-start;
     }
-    .testi-card .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-      padding: 8px;
+    .testi-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      flex-shrink: 0; padding: 10px;
+      display: flex; align-items: center; justify-content: center;
     }
-    .testi-card .avatar img { width: 100%; height: 100%; object-fit: contain; }
-    .testi-card:nth-child(1) .avatar { background: var(--pink-light); }
-    .testi-card:nth-child(2) .avatar { background: var(--blue-light); }
-    .testi-card:nth-child(3) .avatar { background: var(--mint-light); }
-    .testi-card h4 {
-      font-family: var(--round);
-      font-size: 0.88rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--ink);
+    .testi-avatar img { width: 100%; height: 100%; object-fit: contain; }
+    .testi-card:nth-child(1) .testi-avatar { background: var(--pink-light); }
+    .testi-card:nth-child(2) .testi-avatar { background: var(--blue-light); }
+    .testi-card:nth-child(3) .testi-avatar { background: var(--mint-light); }
+    .testi-body h4 {
+      font-family: var(--round); font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;
     }
-    .testi-card p {
-      font-size: 0.82rem;
-      color: var(--ink-soft);
-      line-height: 1.8;
-    }
-    .testi-card .who {
-      margin-top: 12px;
-      font-size: 0.72rem;
-      color: var(--ink-faint);
-    }
-    .testi-note {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 0.68rem;
-      color: var(--ink-faint);
-    }
-
+    .testi-body p { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.7; }
+    .testi-body .who { margin-top: 8px; font-size: 0.7rem; color: var(--ink-faint); }
+    .testi-note { text-align: center; margin-top: 14px; font-size: 0.65rem; color: var(--ink-faint); }
     @media (min-width: 768px) {
-      .testi-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .testi-row { grid-template-columns: repeat(3, 1fr); }
     }
 
-    /* =============================================
-       BOTTOM CTA
-    ============================================= */
+    /* ===== BOTTOM CTA ===== */
     .bottom-cta {
-      padding: 40px 20px;
-      background: linear-gradient(135deg, #8b7bc6 0%, #e8637a 40%, #f2946b 70%, #5ba4d9 100%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      padding: 36px 20px; text-align: center; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #8b7bc6 0%, #e85a7a 35%, #f2936b 65%, #58a6dc 100%);
     }
     .bottom-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.08);
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
       pointer-events: none;
     }
     .bottom-cta-inner {
-      max-width: 640px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
+      max-width: 640px; margin: 0 auto; position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
     }
     .bottom-cta h2 {
-      font-family: var(--round);
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.6;
-      margin-bottom: 20px;
+      font-family: var(--round); font-size: 1.1rem; font-weight: 700;
+      color: #fff; line-height: 1.6;
     }
     .bottom-cta .cta-box {
-      background: rgba(255,255,255,0.95);
-      border-radius: 16px;
-      padding: 24px;
+      background: rgba(255,255,255,0.95); border-radius: 16px; padding: 20px 24px;
+      text-align: center; width: 100%; max-width: 420px;
     }
-    .bottom-cta .cta-box .note {
-      font-size: 0.75rem;
-      color: var(--ink-faint);
-      margin-bottom: 12px;
-    }
-    .bottom-cta .cta-box .sub {
-      margin-top: 10px;
-      font-size: 0.7rem;
-      color: var(--ink-faint);
+    .bottom-cta .cta-box .note { font-size: 0.72rem; color: var(--ink-faint); margin-bottom: 10px; line-height: 1.5; }
+    .bottom-cta .cta-box .sub { margin-top: 10px; font-size: 0.68rem; color: var(--ink-faint); }
+    /* deco icon left */
+    .bottom-cta-deco {
+      position: absolute; left: 16px; bottom: 12px;
+      width: 56px; opacity: 0.5;
     }
 
-    /* =============================================
-       FOOTER
-    ============================================= */
+    @media (min-width: 768px) {
+      .bottom-cta-inner { flex-direction: row; justify-content: center; gap: 32px; }
+      .bottom-cta h2 { text-align: left; font-size: 1.2rem; }
+    }
+
+    /* ===== FOOTER ===== */
     footer {
-      padding: 28px 20px;
-      text-align: center;
-      font-size: 0.7rem;
-      color: var(--ink-faint);
-      background: var(--card);
-      border-top: 1px solid rgba(0,0,0,0.04);
+      padding: 24px 20px; text-align: center;
+      font-size: 0.68rem; color: var(--ink-faint);
+      background: #fff; border-top: 1px solid rgba(0,0,0,0.04);
     }
     footer a { color: var(--ink-faint); }
 
-    /* =============================================
-       ANIMATIONS
-    ============================================= */
+    /* ===== ANIMATIONS ===== */
     .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <header class="site-header">
+  <!-- HEADER -->
+  <header class="header">
     <div class="header-inner">
-      <a href="#" class="logo">
-        <span class="logo-icon">AI</span>
+      <div class="logo">
+        <span class="logo-mark">AI</span>
         AI×子育てラボ
-      </a>
-      <nav>
-        <ul class="header-nav">
-          <li><a href="#benefits">講座の特徴</a></li>
-          <li><a href="#curriculum">学べること</a></li>
-          <li><a href="#testimonials">受講生の声</a></li>
-        </ul>
-      </nav>
-      <a href="#cta" class="header-cta">無料で詳細を受け取る</a>
+      </div>
+      <nav><ul class="header-nav">
+        <li><a href="#benefits">講座の特徴</a></li>
+        <li><a href="#curriculum">学べること</a></li>
+        <li><a href="#curriculum">カリキュラム</a></li>
+        <li><a href="#testi">受講生の声</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+      </ul></nav>
+      <a href="#cta" class="header-cta-btn">無料で詳細を受け取る</a>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero">
-    <img src="images/deco-sparkle.png" class="deco-sparkle" style="top:20px;right:10%;opacity:0.35;" alt="">
-    <img src="images/deco-sparkle.png" class="deco-sparkle" style="bottom:60px;left:5%;opacity:0.25;transform:rotate(30deg);width:60px;" alt="">
     <div class="hero-inner">
-      <div class="hero-content">
+      <div class="hero-left">
         <span class="hero-kicker reveal">子育て世代のためのAI入門講座</span>
         <h1 class="reveal">
-          <span class="em-pink">AI</span>を味方に、<br>
-          子どもの<span class="em-blue">未来</span>を<br>
+          <span class="pink">AI</span>を味方に、<br>
+          子どもの<span class="blue">未来</span>を<br>
           もっと豊かに。
         </h1>
-        <p class="hero-sub reveal">
-          親がAIを学ぶことで、<br>
-          子どもと未来を切り拓く力を。
-        </p>
-        <div class="hero-features reveal">
-          <div class="hero-feat">
-            <div class="hero-feat-icon pink"><img src="images/icon-shield.png" alt="安心"></div>
+        <p class="hero-sub reveal">親がAIを学ぶことで、<br>子どもと未来を切り拓く力を。</p>
+
+        <div class="hero-badges reveal">
+          <div class="hero-badge">
+            <div class="hero-badge-icon pink"><img src="images/icon-shield.png" alt=""></div>
             <div>
-              <p class="label">初心者でも安心</p>
-              <p class="desc">やさしく、わかりやすいステップ設計</p>
+              <p class="lbl">初心者でも安心</p>
+              <p class="txt">やさしく、わかりやすいステップ設計</p>
             </div>
           </div>
-          <div class="hero-feat">
-            <div class="hero-feat-icon blue"><img src="images/icon-parent-child.png" alt="親子"></div>
+          <div class="hero-badge">
+            <div class="hero-badge-icon blue"><img src="images/icon-parent-child.png" alt=""></div>
             <div>
-              <p class="label">子どもとの向き合い方がわかる</p>
-              <p class="desc">AI時代の学び・ルール・活用法を学べる</p>
+              <p class="lbl">子どもとの向き合い方がわかる</p>
+              <p class="txt">AI時代の学び・ルール・活用法を学べる</p>
             </div>
           </div>
-          <div class="hero-feat">
-            <div class="hero-feat-icon purple"><img src="images/icon-clock.png" alt="時間"></div>
+          <div class="hero-badge">
+            <div class="hero-badge-icon purple"><img src="images/icon-clock.png" alt=""></div>
             <div>
-              <p class="label">忙しくても続けられる</p>
-              <p class="desc">スキマ時間で学べるオンライン講座</p>
+              <p class="lbl">忙しくても続けられる</p>
+              <p class="txt">スキマ時間で学べるオンライン講座</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 画像プレースホルダー: HERO -->
-      <div class="hero-image reveal">
-        <div class="placeholder-label">
+      <div class="hero-visual reveal">
+        <div class="speech-bubble">AIって<br>こんなに楽しい！</div>
+        <div class="placeholder">
           <strong>HERO IMAGE</strong>
-          素材①: 親子+ロボットマスコット
+          親子がタブレットを見ている写真<br>+ ロボットマスコット
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="hero-cta-area reveal">
-        <p class="hero-cta-note">まずは無料で資料を受け取る（需要調査アンケートにご協力ください）</p>
-        <a href="#" class="btn-primary">
-          無料で詳細を受け取る
-          <span class="arrow">&rsaquo;</span>
-        </a>
-        <p class="hero-cta-sub">1分で完了！いつでも受講の可否は選べます</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- wave divider -->
-  <img src="images/deco-wave-pink.png" class="section-divider" alt="">
-
-  <!-- ===== CONCERNS ===== -->
-  <section class="concerns reveal">
-    <div class="section-title">こんなお悩みありませんか？</div>
-    <div class="section-deco">
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-    <div class="concern-grid">
-      <div class="concern-card reveal">
-        <div class="illust"><img src="images/icon-question.png" alt="疑問"></div>
-        <p>AIって難しそう…<br>何から学べばいいの？</p>
-      </div>
-      <div class="concern-card reveal">
-        <div class="illust"><img src="images/icon-smartphone.png" alt="スマホ"></div>
-        <p>子どもがAIを使う時代、<br>どう向き合えばいいのか不安…</p>
-      </div>
-      <div class="concern-card reveal">
-        <div class="illust"><img src="images/icon-lightbulb.png" alt="ひらめき"></div>
-        <p>子どもの将来のために<br>今できることを知りたい！</p>
-      </div>
-      <div class="concern-card reveal">
-        <div class="illust"><img src="images/icon-gear.png" alt="仕事"></div>
-        <p>AIに仕事を奪われるって<br>聞くけど、将来が心配…</p>
-      </div>
-      <div class="concern-card reveal">
-        <div class="illust"><img src="images/icon-book.png" alt="情報"></div>
-        <p>情報が多すぎて、<br>何が正しいのかわからない…</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== RESOLVE ===== -->
-  <div class="resolve-banner reveal">
-    <img src="images/deco-ribbon.png" class="ribbon-bg" alt="">
-    <p style="position:relative;z-index:1;">そのお悩み、この講座で<strong>解決できます</strong>！</p>
-  </div>
-
-  <!-- ===== BENEFITS ===== -->
-  <section id="benefits" class="benefits">
-    <div class="section-title reveal">この講座で得られる<span class="num">3</span>つの未来</div>
-    <div class="benefit-grid">
-      <div class="benefit-card reveal">
-        <img src="images/deco-blob-pink.png" class="blob-bg" alt="">
-        <p class="benefit-num">01</p>
-        <h3><span class="em">AIの基礎</span>が<br>やさしくわかる！</h3>
-        <div class="illust"><img src="images/icon-brain.png" alt="AIの基礎" style="width:64px;height:64px;object-fit:contain;"></div>
-        <p class="desc">専門用語は使いません。AIの仕組みや最新トレンドをやさしく学べます。</p>
-      </div>
-      <div class="benefit-card reveal">
-        <img src="images/deco-blob-blue.png" class="blob-bg" alt="">
-        <p class="benefit-num">02</p>
-        <h3><span class="em">子どもとAI</span>を<br>上手に活用できる！</h3>
-        <div class="illust"><img src="images/icon-parent-child.png" alt="親子" style="width:64px;height:64px;object-fit:contain;"></div>
-        <p class="desc">子どもの学びをサポートし、創造力や問題解決力を伸ばす関わり方がわかります。</p>
-      </div>
-      <div class="benefit-card reveal">
-        <img src="images/deco-blob-coral.png" class="blob-bg" alt="">
-        <p class="benefit-num">03</p>
-        <h3><span class="em">AI時代を生き抜く</span><br>マインドが身につく！</h3>
-        <div class="illust"><img src="images/icon-rocket.png" alt="未来" style="width:64px;height:64px;object-fit:contain;"></div>
-        <p class="desc">変化を恐れず、親子で未来を切り拓く力・考え方が身につきます。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- dots divider -->
-  <img src="images/deco-dots-blue.png" class="section-divider" alt="">
-
-  <!-- ===== CURRICULUM + FEATURES ===== -->
-  <section id="curriculum" class="details">
-    <div class="details-inner">
-      <div class="details-col">
-        <h2>学べること</h2>
-        <ul class="curriculum-list">
-          <li>
-            <span class="dot"><img src="images/icon-brain.png" alt=""></span>
-            <span>AIってなに？基本の「き」からやさしく解説</span>
-          </li>
-          <li>
-            <span class="dot"><img src="images/icon-smartphone.png" alt=""></span>
-            <span>子どもにおすすめのAIツール紹介と使い方</span>
-          </li>
-          <li>
-            <span class="dot"><img src="images/icon-lightbulb.png" alt=""></span>
-            <span>学力・創造力を伸ばすAI活用アイデア</span>
-          </li>
-          <li>
-            <span class="dot"><img src="images/icon-lock.png" alt=""></span>
-            <span>AIとどう付き合う？ルール作りとリスク管理</span>
-          </li>
-          <li>
-            <span class="dot"><img src="images/icon-rocket.png" alt=""></span>
-            <span>教育・仕事・生活…AIで広がる未来の選択肢</span>
-          </li>
-        </ul>
-      </div>
-      <div class="details-col features-col">
-        <h2>講座の特徴</h2>
-        <div class="feat-list">
-          <div class="feat-item">
-            <div class="icon"><img src="images/icon-play.png" alt=""></div>
-            <div>
-              <h4>オンラインで完結</h4>
-              <p>自宅で好きな時間に学べる</p>
-            </div>
-          </div>
-          <div class="feat-item">
-            <div class="icon"><img src="images/icon-clock.png" alt=""></div>
-            <div>
-              <h4>1回15〜20分の短時間動画</h4>
-              <p>スキマ時間で無理なく続けられる</p>
-            </div>
-          </div>
-          <div class="feat-item">
-            <div class="icon"><img src="images/icon-chat.png" alt=""></div>
-            <div>
-              <h4>質問し放題のサポート付き</h4>
-              <p>わからないことはいつでも相談OK</p>
-            </div>
-          </div>
-          <div class="feat-item">
-            <div class="icon"><img src="images/icon-gift.png" alt=""></div>
-            <div>
-              <h4>特典：AI活用ガイドブック</h4>
-              <p>受講者全員にプレゼント！</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="details-illust">
-          <img src="images/icon-gear.png" alt="" style="width:48px;height:48px;object-fit:contain;margin-right:8px;">
-          <img src="images/icon-brain.png" alt="" style="width:48px;height:48px;object-fit:contain;margin-right:8px;">
-          <img src="images/icon-sparkle.png" alt="" style="width:48px;height:48px;object-fit:contain;">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIALS ===== -->
-  <section id="testimonials" class="testimonials">
-    <div class="section-title reveal">受講生の声</div>
-    <p class="section-sub">（イメージ）</p>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <img src="images/deco-quotes.png" class="deco-quote-mark" alt="">
-        <div class="avatar"><img src="images/icon-heart.png" alt=""></div>
-        <h4>不安が自信に変わりました！</h4>
-        <p>AIは難しいと思っていましたが、講座を受けて子どもと一緒に楽しめるようになりました！</p>
-        <p class="who">30代・小学生のママ</p>
-      </div>
-      <div class="testi-card reveal">
-        <img src="images/deco-quotes.png" class="deco-quote-mark" alt="">
-        <div class="avatar"><img src="images/icon-sparkle.png" alt=""></div>
-        <h4>子どもの学びが広がりました！</h4>
-        <p>AIツールを使って自由研究や調べ学習がもっと楽しくなって、親子の会話も増えました。</p>
-        <p class="who">40代・中学生のママ</p>
-      </div>
-      <div class="testi-card reveal">
-        <img src="images/deco-quotes.png" class="deco-quote-mark" alt="">
-        <div class="avatar"><img src="images/icon-thumbsup.png" alt=""></div>
-        <h4>未来への不安が減りました！</h4>
-        <p>変化の時代でも学び続ければ大丈夫だと前向きに。子どもの可能性を信じられるようになった。</p>
-        <p class="who">30代・年長のママ</p>
-      </div>
-    </div>
-    <p class="testi-note">※ 体験モニターの方の感想です</p>
-  </section>
-
-  <!-- ===== BOTTOM CTA ===== -->
-  <section id="cta" class="bottom-cta">
-    <div class="bottom-cta-inner reveal">
-      <h2>あなたとお子さんの未来のために、<br>今、はじめの一歩を踏み出しませんか？</h2>
-      <div class="cta-box">
-        <p class="note">まずは無料で資料を受け取る（需要調査アンケートにご協力ください）</p>
-        <a href="#" class="btn-primary">
-          無料で詳細を受け取る
-          <span class="arrow">&rsaquo;</span>
-        </a>
+      <div class="hero-cta-box reveal">
+        <p class="note">まずは無料で資料を受け取る<br>（需要調査アンケートにご協力ください）</p>
+        <a href="#" class="btn-cta">無料で詳細を受け取る <span class="arr">&rsaquo;</span></a>
         <p class="sub">1分で完了！いつでも受講の可否は選べます</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- WAVE -->
+  <div class="wave-divider"><img src="images/deco-wave-pink.png" alt=""></div>
+
+  <!-- CONCERNS -->
+  <section class="concerns">
+    <h2 class="sec-title reveal">こんなお悩みありませんか？</h2>
+    <div class="sec-deco"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="concern-row">
+      <div class="concern-item reveal">
+        <div class="concern-illust"><img src="images/icon-question.png" alt=""></div>
+        <div class="concern-text">AIって難しそう…<br>何から学べばいいの？</div>
+      </div>
+      <div class="concern-item reveal">
+        <div class="concern-illust"><img src="images/icon-smartphone.png" alt=""></div>
+        <div class="concern-text">子どもがAIを使う時代、<br>どう向き合えばいいのか不安…</div>
+      </div>
+      <div class="concern-item reveal">
+        <div class="concern-illust"><img src="images/icon-lightbulb.png" alt=""></div>
+        <div class="concern-text">子どもの将来のために<br>今できることを知りたい！</div>
+      </div>
+      <div class="concern-item reveal">
+        <div class="concern-illust"><img src="images/icon-gear.png" alt=""></div>
+        <div class="concern-text">AIに仕事を奪われるって<br>聞くけど、将来が心配…</div>
+      </div>
+      <div class="concern-item reveal">
+        <div class="concern-illust"><img src="images/icon-book.png" alt=""></div>
+        <div class="concern-text">情報が多すぎて、<br>何が正しいのかわからない…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOLVE -->
+  <div class="resolve reveal">
+    <p>そのお悩み、この講座で<strong>解決できます</strong>！</p>
+  </div>
+
+  <!-- BENEFITS -->
+  <section id="benefits" class="benefits">
+    <h2 class="sec-title reveal">この講座で得られる<span class="num">3</span>つの未来</h2>
+    <div class="benefit-row">
+      <div class="benefit-card reveal">
+        <img src="images/deco-blob-pink.png" class="blob" alt="">
+        <p class="benefit-num">01</p>
+        <h3><span class="c1">AIの基礎</span>が<br>やさしくわかる！</h3>
+        <div class="benefit-illust">素材: 親がタブレットで学ぶイラスト</div>
+        <p class="desc">専門用語は使いません。<br>AIの仕組みや最新トレンドを<br>やさしく学べます。</p>
+      </div>
+      <div class="benefit-card reveal">
+        <img src="images/deco-blob-blue.png" class="blob" alt="">
+        <p class="benefit-num">02</p>
+        <h3><span class="c2">子どもとAI</span>を<br>上手に活用できる！</h3>
+        <div class="benefit-illust">素材: 親子でAIを使うイラスト</div>
+        <p class="desc">子どもの学びをサポートし、<br>創造力や問題解決力を<br>伸ばす関わり方がわかります。</p>
+      </div>
+      <div class="benefit-card reveal">
+        <img src="images/deco-blob-coral.png" class="blob" alt="">
+        <p class="benefit-num">03</p>
+        <h3><span class="c3">AI時代を生き抜く</span><br>マインドが身につく！</h3>
+        <div class="benefit-illust">素材: 親子で未来へ進むイラスト</div>
+        <p class="desc">変化を恐れず、親子で未来を<br>切り拓く力・考え方が<br>身につきます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOTS DIVIDER -->
+  <div class="wave-divider"><img src="images/deco-dots-blue.png" alt=""></div>
+
+  <!-- DETAILS -->
+  <section id="curriculum" class="details">
+    <div class="details-inner">
+      <div class="details-col">
+        <h2>学べること</h2>
+        <ul class="cur-list">
+          <li><span class="cur-dot"><img src="images/icon-brain.png" alt=""></span>AIってなに？基本の「き」からやさしく解説</li>
+          <li><span class="cur-dot"><img src="images/icon-smartphone.png" alt=""></span>子どもにおすすめのAIツール紹介と使い方</li>
+          <li><span class="cur-dot"><img src="images/icon-lightbulb.png" alt=""></span>学力・創造力を伸ばすAI活用アイデア</li>
+          <li><span class="cur-dot"><img src="images/icon-lock.png" alt=""></span>AIとどう付き合う？ルール作りとリスク管理</li>
+          <li><span class="cur-dot"><img src="images/icon-rocket.png" alt=""></span>教育・仕事・生活…AIで広がる未来の選択肢</li>
+        </ul>
+      </div>
+      <div class="details-col feat-col">
+        <h2>講座の特徴</h2>
+        <div class="feat-list">
+          <div class="feat-row">
+            <div class="feat-icon"><img src="images/icon-play.png" alt=""></div>
+            <div><h4>オンラインで完結</h4><p>自宅で好きな時間に学べる</p></div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon"><img src="images/icon-clock.png" alt=""></div>
+            <div><h4>1回15〜20分の短時間動画</h4><p>スキマ時間で無理なく続けられる</p></div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon"><img src="images/icon-chat.png" alt=""></div>
+            <div><h4>質問し放題のサポート付き</h4><p>わからないことはいつでも相談OK</p></div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon"><img src="images/icon-gift.png" alt=""></div>
+            <div><h4>特典：AI活用ガイドブック</h4><p>受講者全員にプレゼント！</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="details-center-illust">素材: AIロボット概念図</div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testi" class="testi">
+    <h2 class="sec-title reveal">受講生の声<span style="font-size:0.7em;font-weight:400;color:var(--ink-faint);">（イメージ）</span></h2>
+    <p class="sec-sub"></p>
+    <div class="testi-row">
+      <div class="testi-card reveal">
+        <div class="testi-avatar"><img src="images/icon-heart.png" alt=""></div>
+        <div class="testi-body">
+          <h4>不安が自信に変わりました！</h4>
+          <p>AIは難しいと思っていましたが、講座を受けて子どもと一緒に楽しめるようになりました！</p>
+          <p class="who">30代・小学生のママ</p>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-avatar"><img src="images/icon-sparkle.png" alt=""></div>
+        <div class="testi-body">
+          <h4>子どもの学びが広がりました！</h4>
+          <p>AIツールを使って自由研究や調べ学習がもっと楽しくなって、親子の会話も増えました。</p>
+          <p class="who">40代・中学生のママ</p>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-avatar"><img src="images/icon-thumbsup.png" alt=""></div>
+        <div class="testi-body">
+          <h4>未来への不安が減りました！</h4>
+          <p>変化の時代でも学び続ければ大丈夫だと前向きに。子どもの可能性を信じられるようになった。</p>
+          <p class="who">30代・年長のママ</p>
+        </div>
+      </div>
+    </div>
+    <p class="testi-note">※ 体験モニターの方の感想です</p>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section id="cta" class="bottom-cta">
+    <img src="images/icon-graduation.png" class="bottom-cta-deco" alt="">
+    <div class="bottom-cta-inner">
+      <h2>あなたとお子さんの未来のために、<br>今、はじめの一歩を踏み出しませんか？</h2>
+      <div class="cta-box">
+        <p class="note">まずは無料で資料を受け取る<br>（需要調査アンケートにご協力ください）</p>
+        <a href="#" class="btn-cta">無料で詳細を受け取る <span class="arr">&rsaquo;</span></a>
+        <p class="sub">1分で完了！いつでも受講の可否は選べます</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 AI×子育てラボ</p>
-    <p style="margin-top: 4px;">
-      <a href="#">プライバシーポリシー</a>&ensp;/&ensp;<a href="#">特定商取引法に基づく表記</a>
-    </p>
+    <p style="margin-top:4px;"><a href="#">プライバシーポリシー</a> / <a href="#">特定商取引法に基づく表記</a></p>
   </footer>
 
   <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
-
 </body>
 </html>
