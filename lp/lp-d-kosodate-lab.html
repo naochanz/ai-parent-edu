@@ -323,6 +323,42 @@
     }
 
     /* =============================================
+       SECTION DIVIDER (wave decoration)
+    ============================================= */
+    .section-divider {
+      display: block;
+      width: 120px;
+      height: auto;
+      margin: 0 auto;
+      opacity: 0.6;
+    }
+
+    /* =============================================
+       DECO HELPERS
+    ============================================= */
+    .deco-sparkle {
+      position: absolute;
+      width: 80px;
+      height: auto;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .deco-blob-bg {
+      position: absolute;
+      width: 200px;
+      height: auto;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .deco-quote-mark {
+      width: 28px;
+      height: auto;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    /* =============================================
        CONCERNS
     ============================================= */
     .concerns {
@@ -418,6 +454,18 @@
       padding: 28px 20px;
       text-align: center;
       background: linear-gradient(135deg, var(--pink-light), var(--coral-light), var(--blue-light));
+      position: relative;
+      overflow: hidden;
+    }
+    .resolve-banner .ribbon-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      height: auto;
+      opacity: 0.2;
+      pointer-events: none;
     }
     .resolve-banner p {
       font-family: var(--round);
@@ -461,7 +509,20 @@
       padding: 28px 24px;
       box-shadow: 0 2px 16px rgba(0,0,0,0.05);
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+    .benefit-card .blob-bg {
+      position: absolute;
+      top: -20px;
+      right: -30px;
+      width: 160px;
+      height: auto;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .benefit-card > * { position: relative; z-index: 1; }
     .benefit-num {
       font-family: var(--round);
       font-size: 2rem;
@@ -797,6 +858,8 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero">
+    <img src="images/deco-sparkle.png" class="deco-sparkle" style="top:20px;right:10%;opacity:0.35;" alt="">
+    <img src="images/deco-sparkle.png" class="deco-sparkle" style="bottom:60px;left:5%;opacity:0.25;transform:rotate(30deg);width:60px;" alt="">
     <div class="hero-inner">
       <div class="hero-content">
         <span class="hero-kicker reveal">子育て世代のためのAI入門講座</span>
@@ -854,6 +917,9 @@
     </div>
   </section>
 
+  <!-- wave divider -->
+  <img src="images/deco-wave-pink.png" class="section-divider" alt="">
+
   <!-- ===== CONCERNS ===== -->
   <section class="concerns reveal">
     <div class="section-title">こんなお悩みありませんか？</div>
@@ -886,7 +952,8 @@
 
   <!-- ===== RESOLVE ===== -->
   <div class="resolve-banner reveal">
-    <p>そのお悩み、この講座で<strong>解決できます</strong>！</p>
+    <img src="images/deco-ribbon.png" class="ribbon-bg" alt="">
+    <p style="position:relative;z-index:1;">そのお悩み、この講座で<strong>解決できます</strong>！</p>
   </div>
 
   <!-- ===== BENEFITS ===== -->
@@ -894,18 +961,21 @@
     <div class="section-title reveal">この講座で得られる<span class="num">3</span>つの未来</div>
     <div class="benefit-grid">
       <div class="benefit-card reveal">
+        <img src="images/deco-blob-pink.png" class="blob-bg" alt="">
         <p class="benefit-num">01</p>
         <h3><span class="em">AIの基礎</span>が<br>やさしくわかる！</h3>
         <div class="illust"><img src="images/icon-brain.png" alt="AIの基礎" style="width:64px;height:64px;object-fit:contain;"></div>
         <p class="desc">専門用語は使いません。AIの仕組みや最新トレンドをやさしく学べます。</p>
       </div>
       <div class="benefit-card reveal">
+        <img src="images/deco-blob-blue.png" class="blob-bg" alt="">
         <p class="benefit-num">02</p>
         <h3><span class="em">子どもとAI</span>を<br>上手に活用できる！</h3>
         <div class="illust"><img src="images/icon-parent-child.png" alt="親子" style="width:64px;height:64px;object-fit:contain;"></div>
         <p class="desc">子どもの学びをサポートし、創造力や問題解決力を伸ばす関わり方がわかります。</p>
       </div>
       <div class="benefit-card reveal">
+        <img src="images/deco-blob-coral.png" class="blob-bg" alt="">
         <p class="benefit-num">03</p>
         <h3><span class="em">AI時代を生き抜く</span><br>マインドが身につく！</h3>
         <div class="illust"><img src="images/icon-rocket.png" alt="未来" style="width:64px;height:64px;object-fit:contain;"></div>
@@ -913,6 +983,9 @@
       </div>
     </div>
   </section>
+
+  <!-- dots divider -->
+  <img src="images/deco-dots-blue.png" class="section-divider" alt="">
 
   <!-- ===== CURRICULUM + FEATURES ===== -->
   <section id="curriculum" class="details">
@@ -990,18 +1063,21 @@
     <p class="section-sub">（イメージ）</p>
     <div class="testi-grid">
       <div class="testi-card reveal">
+        <img src="images/deco-quotes.png" class="deco-quote-mark" alt="">
         <div class="avatar"><img src="images/icon-heart.png" alt=""></div>
         <h4>不安が自信に変わりました！</h4>
         <p>AIは難しいと思っていましたが、講座を受けて子どもと一緒に楽しめるようになりました！</p>
         <p class="who">30代・小学生のママ</p>
       </div>
       <div class="testi-card reveal">
+        <img src="images/deco-quotes.png" class="deco-quote-mark" alt="">
         <div class="avatar"><img src="images/icon-sparkle.png" alt=""></div>
         <h4>子どもの学びが広がりました！</h4>
         <p>AIツールを使って自由研究や調べ学習がもっと楽しくなって、親子の会話も増えました。</p>
         <p class="who">40代・中学生のママ</p>
       </div>
       <div class="testi-card reveal">
+        <img src="images/deco-quotes.png" class="deco-quote-mark" alt="">
         <div class="avatar"><img src="images/icon-thumbsup.png" alt=""></div>
         <h4>未来への不安が減りました！</h4>
         <p>変化の時代でも学び続ければ大丈夫だと前向きに。子どもの可能性を信じられるようになった。</p>
